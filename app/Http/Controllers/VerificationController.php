@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\City;
+use App\Models\ApplyLoan;
 
-class CityController extends Controller
+class VerificationController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('permission:city-read', ['only' => ['index', 'store']]);
-        $this->middleware('permission:city-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:city-update', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:city-delete', ['only' => ['destroy']]);
-    }
+    // function __construct()
+    // {
+    //     $this->middleware('permission:city-read', ['only' => ['index', 'store']]);
+    //     $this->middleware('permission:city-create', ['only' => ['create', 'store']]);
+    //     $this->middleware('permission:city-update', ['only' => ['edit', 'update']]);
+    //     $this->middleware('permission:city-delete', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -22,14 +22,14 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-        $complete = City::get();
+        $complete = ApplyLoan::get();
         if ($request->ajax()) {
             $columns = [
-                0 => 'id',
+                0 => 's_no',
                 1 => 'title',
                 2 => 'zone_code',
             ];
-            $totalData = City::count();
+            $totalData = ApplyLoan::count();
             $totalFiltered = $totalData;
             $limit = $request->input('length');
             $start = $request->input('start');
@@ -37,21 +37,21 @@ class CityController extends Controller
             $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
-                $role = City::offset($start)
+                $role = ApplyLoan::offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
             } else {
                 $search = $request->input('search.value');
-                $role = City::where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', "%{$search}%");
+                $role = ApplyLoan::where(function ($query) use ($search) {
+                    $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
-                $totalFiltered = City::where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', "%{$search}%");
+                $totalFiltered = ApplyLoan::where(function ($query) use ($search) {
+                    $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->count();
             }
@@ -63,10 +63,10 @@ class CityController extends Controller
                 foreach ($role as $key => $rolevalue) {
                     //dd($rolevalue->permissions);
                     $nestedData['id'] = $count + $start + 1;
-                    $nestedData['name'] = $rolevalue->name;
-                    $nestedData['slug_url_name'] = $rolevalue->slug_url_name;
-                    $nestedData['action'] = '<a href=' . route('city.edit', $rolevalue->id) . '><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                    <a href=' . route('city.delete', $rolevalue->id) . '><span style="color:red;"><i class="fa fa-trash" aria-hidden="true"></i></span></a>';
+                    $nestedData['order_id'] = $rolevalue->order_id;
+                    $nestedData['loan_amount'] = $rolevalue->loan_amount;
+                    $nestedData['action'] = '<a href=' . route('city.edit', $rolevalue->s_no) . '><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                    <a href=' . route('city.delete', $rolevalue->s_no) . '><span style="color:red;"><i class="fa fa-trash" aria-hidden="true"></i></span></a>';
                     $data[] = $nestedData;
                     $count++;
                 }
@@ -80,7 +80,7 @@ class CityController extends Controller
             echo json_encode($json_data);
             exit;
         }
-        return view('admin.city.index', compact('complete'));
+        return view('admin.all-loans.index', compact('complete'));
     }
 
     /**
@@ -108,7 +108,7 @@ class CityController extends Controller
 
         ]);
         $input = $request->all();
-        $user = City::create($input);
+        $user = ApplyLoan::create($input);
         if ($input) {
             return redirect()->route('city')->with('success', 'city Created Successfully');
         } else {
@@ -123,7 +123,7 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        $data  = City::where('id', $id)->first();
+        $data  = ApplyLoan::where('id', $id)->first();
         return view('admin.city.edit', compact('data'));
     }
 
@@ -140,7 +140,7 @@ class CityController extends Controller
             'name'   => 'required',
 
         ]);
-        $data = City::find($id);
+        $data = ApplyLoan::find($id);
         $data->name = $request->name;
         $data->slug_url_name = $request->slug_url_name;
         $data->save();
@@ -160,7 +160,7 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        $Slidar = City::find($id)->delete();
+        $Slidar = ApplyLoan::find($id)->delete();
 
         return redirect()->back()->with('success', 'Slidar Deleted Successfully');
     }

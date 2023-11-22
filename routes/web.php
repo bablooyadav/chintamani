@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require __DIR__.'/loan_module.php';
 
 
 Route::get('/quick-enquiry', function () {
@@ -131,12 +133,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::post('/faq-update/{id}', [App\Http\Controllers\FaqController::class, 'update'])->name('faq.update');
 	Route::get('/faq-delete/{id}', [App\Http\Controllers\FaqController::class, 'destroy'])->name('faq.delete');
 
-	Route::get('/city', [App\Http\Controllers\CityController::class, 'index'])->name('city');
-	Route::get('/city-add', [App\Http\Controllers\CityController::class, 'create'])->name('city.add');
-	Route::post('/city-store', [App\Http\Controllers\CityController::class, 'store'])->name('city.store');
-	Route::get('/city-edit/{id}', [App\Http\Controllers\CityController::class, 'edit'])->name('city.edit');
-	Route::post('/city-update/{id}', [App\Http\Controllers\CityController::class, 'update'])->name('city.update');
-	Route::get('/city-delete/{id}', [App\Http\Controllers\CityController::class, 'destroy'])->name('city.delete');
+	Route::get('/city', [CityController::class, 'index'])->name('city');
+	Route::get('/city-add', [CityController::class, 'create'])->name('city.add');
+	Route::post('/city-store', [CityController::class, 'store'])->name('city.store');
+	Route::get('/city-edit/{id}', [CityController::class, 'edit'])->name('city.edit');
+	Route::post('/city-update/{id}', [CityController::class, 'update'])->name('city.update');
+	Route::get('/city-delete/{id}', [CityController::class, 'destroy'])->name('city.delete');
 
 	Route::get('/city-pages', [App\Http\Controllers\CityPagesController::class, 'index'])->name('city-pages');
 	Route::get('/city-pages-add', [App\Http\Controllers\CityPagesController::class, 'create'])->name('city-pages.add');

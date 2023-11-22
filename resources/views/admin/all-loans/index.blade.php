@@ -9,7 +9,7 @@
                         <div class="col-lg-8">
                             <div class="page-header-title">
                                 <div class="d-inline">
-                                    <h4>Add City</h4>
+                                    <h4>Verification List</h4>
                                 </div>
                             </div>
                         </div>
@@ -17,7 +17,7 @@
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item" style="float: left;"> <a href="#!">Home</a> </li>
-                                    <li class="breadcrumb-item" style="float: left;"> <a href="#!">Form For Adding Staff</a> </li>
+                                    <li class="breadcrumb-item" style="float: left;"> <a href="#!">Verification List</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                             <div>
                                 <div>
                                     <div class="items" data-group="test">
-                                        <div class="card">
+                                        <!-- <div class="card">
                                             <div class="card-body">
                                                 <form class="row g-3" method="post" enctype="multipart/form-data" action="{{route('city.store')}}">
                                                     @csrf
@@ -52,16 +52,26 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table id="city_data" class="table table-striped table-bordered ">
+                                                    <table id="verification_data" class="table table-striped table-bordered ">
                                                         <thead class="bg-primary text-white">
                                                             <tr>
-                                                                <th>Sl No</th>
+                                                                <th>S.No</th>
+                                                                <th>Order Id</th>
+                                                                <th>Source</th>
+                                                                <th>DSA Name</th>
                                                                 <th>Name</th>
-                                                                <th>Slug Url Name</th>
+                                                                <th>Phone</th>
+                                                                <th>Salary</th>
+                                                                <th>City</th>
+                                                                <th>Delay Days</th>
+                                                                <th>Apply Date</th>
+                                                                <th>Assigned To</th>
+                                                                <th>Verified By</th>
+                                                                <th>Manage</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -82,14 +92,14 @@
     </div>
 </div>
 <script>
-    var list = '{{ route("city") }}';
-    var titleName = 'City List';
+    var list = '{{ route("verification.loan") }}';
+    var titleName = 'Verification List';
     $(document).ready(function() {
         table_schedule(list);
     });
 
     function table_schedule(list) {
-        var tableid = 'city_data';
+        var tableid = 'verification_data';
         var table = $('#' + tableid).DataTable({
             'responsive': true, // Table pagination
             "processing": true,
@@ -112,16 +122,15 @@
                     d.level = 1;
                 },
             },
-            "columns": [
-                {
+            "columns": [{
                     "data": "id",
                     "orderable": false
                 },
                 {
-                    "data": "name"
+                    "data": "order_id"
                 },
                 {
-                    "data": "slug_url_name"
+                    "data": "loan_amount"
                 },
                 {
                     "data": "action"

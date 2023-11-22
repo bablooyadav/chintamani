@@ -224,6 +224,7 @@
                      <span class="pcoded-mtext">Manual Leads</span>
                   </a>
                </li>
+               
                @endcan
                <!-- @can('rejection-read')
                <li>
@@ -233,6 +234,12 @@
                </li>
                @endcan -->
             </ul>
+         </li>
+         <li>
+            <a href="{{ route('verification.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-home"></i></span>
+               <span class="pcoded-mtext">Verification</span>
+            </a>
          </li>
       </ul>
    </div>
