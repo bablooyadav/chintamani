@@ -1,163 +1,174 @@
 @extends('frontend.layouts.master')
 @section('content')
-
-
-<!-- Sub banner start -->
-<div class="sub-banner contctBg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <h1>Contact Us</h1>
-                <div class="breadcrumb-area">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><span>/</span>Contact Us</li>
-                    </ul>
+<section id="breadcrumb-section" class="breadcrumb-area breadcrumb-left">
+    <div class="av-container">
+        <div class="av-columns-area">
+            <div class="av-column-12">
+                <div class="breadcrumb-content">
+                    <div class="breadcrumb-heading wow fadeInLeft">
+                        <h2>Contact Us 😊</h2>
+                    </div>
+                    <ol class="breadcrumb-list wow fadeInRight">
+                        <li><a href="index.php"><i class="fa fa-home"></i> HOME</a> &nbsp;-&nbsp;</li>
+                        <li class="active">Contact Us</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Sub Banner end -->
+</section>
+
+<style type="text/css">
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="password"],
+    input[type="search"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="range"],
+    input[type="date"],
+    input[type="month"],
+    input[type="week"],
+    input[type="time"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="color"],
+    textarea {
+        width: 100% !important;
+    }
+</style>
 
 
-<!-- Get in Touch start -->
-<div class="contact-3 content-area-5">
-    <div class="container">
-        <!-- Main title -->
-        <div class="main-title">
-            <p>Get in touch</p>
-            <h1>Contact us</h1>
-        </div>
-        <div class="contact-innner">
-            <div class="row g-0">
-                <div class="col-xl-4 col-lg-5 col-md-12">
-                    <div class="contact-info">
-                        <h3>Contact Info</h3>
-                        <div class="ci-box d-flex">
-                            <div class="icon">
-                                <i class="fa fa-map-marker"></i>
-                            </div>
-                            <div class="detail align-self-center">
-                                <h4>Office Address</h4>
-                                <p>20/F Green Road, Dhaka</p>
-                            </div>
-                        </div>
-                        <div class="ci-box d-flex">
-                            <div class="icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="detail align-self-center">
-                                <h4>Phone Number</h4>
-                                <p>
-                                    <a href="tel:0477-0477-8556-552">Office: 0477 8556 552</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="ci-box d-flex">
-                            <div class="icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                            <div class="detail align-self-center">
-                                <h4>Email Address</h4>
-                                <p>
-                                    <a href="mailto:info@themevessel.com">info@themevessel.com</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="ci-box d-flex mb-30">
-                            <div class="icon">
-                                <i class="fa fa-fax"></i>
-                            </div>
-                            <div class="detail align-self-center">
-                                <h4>Fax:</h4>
-                                <p>
-                                    <a href="tel:0477-0477-8556-552">0477 8556 552</a>
-                                </p>
-                            </div>
-                        </div>
-                        <h3>Follow Us</h3>
-                        <ul class="social-list clearfix">
-                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
-                            <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-8 col-lg-7 col-md-12">
-                    <div class="contact-form">
-                        <h3>Send us a Message</h3>
-                        <form action="#" method="GET" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floating-full-name" placeholder="Full Name">
-                                        <label for="floating-full-name">Full Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floating-email-address" placeholder="Email Address">
-                                        <label for="floating-email-address">Email address</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floating-subject" placeholder="Subject">
-                                        <label for="floating-subject">Subject</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floating-phone-Number" placeholder="Phone Number">
-                                        <label for="floating-phone-Number">Phone Number</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-floating mb-3">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                                        <label for="floatingTextarea2">Comments</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="send-btn text-center">
-                                        <button type="submit" class="btn-4 btn-round-3">Send Message</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+<section id="contactform-section" class="contactform-section av-pb-default">
+    <div class="contactformbg-heading av-py-default">
+        <div class="av-container">
+            <div class="av-columns-area">
+                <div class="av-column-12">
+                    <div class="heading-default text-center wow fadeInUp">
+                        <h3>Have A <span class="primary-color">Question?</span></h3>
+                        <span class="separator"><span><span></span></span></span>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Get in Touch end -->
-
-
-  <!-- Partners strat -->
-  <div class="partners bg-grea-3">
-    <div class="container">
-        <h4>Brands <span>$ Partners</span></h4>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="custom-slider slide-box-btn">
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-1.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-2.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-3.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-4.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-5.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-6.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-1.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-2.png')}}" alt="brand"></div>
-                    <div class="custom-box"><img src="{{asset('frontend/assets/img/brand/brand-3.png')}}" alt="brand"></div>
+    <div class="contactform-content">
+        <div class="av-container">
+            <div class="av-columns-area">
+                <div class="av-column-7">
+                    <div class="contactform">
+                        <div role="form" class="wpcf7">
+                            <div class="screen-reader-response" role="alert" aria-live="polite"></div>
+                            <form action="#" method="post" class="wpcf7-form init" novalidate>
+                                <div style="display:none">
+                                    <input type="hidden" name="_wpcf7" value="229">
+                                    <input type="hidden" name="_wpcf7_version" value="5.2.2">
+                                    <input type="hidden" name="_wpcf7_locale" value="en">
+                                    <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f229-o1">
+                                    <input type="hidden" name="_wpcf7_container_post" value="0">
+                                    <input type="hidden" name="_wpcf7_posted_data_hash">
+                                </div>
+                                <p>
+                                    <label><span class="wpcf7-form-control-wrap your-name"><input type="text" placeholder="Your Name" name="your-name" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></label>
+                                </p>
+                                <p>
+                                    <label><span class="wpcf7-form-control-wrap your-email"><input type="email" placeholder="Your Email" name="your-email" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"></span></label>
+                                </p>
+                                <p>
+                                    <label><span class="wpcf7-form-control-wrap your-email"><input type="number" placeholder="Phone Number" name="your-number" size="40" class="wpcf7-form-control wpcf7-text wpcf7-number wpcf7-validates-as-required wpcf7-validates-as-number" aria-required="true" aria-invalid="false"></span></label>
+                                </p>
+                                <p>
+                                    <label><span class="wpcf7-form-control-wrap your-subject"><input type="text" placeholder="Subject" name="your-subject" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false"></span></label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <span class=" ">
+                                            <select class="wpcf7-form-control wpcf7-text  auusi__css">
+                                                <option>Select Area</option>
+                                            </select>
+                                        </span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label><span class="wpcf7-form-control-wrap your-message"><textarea placeholder="Message" name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span></label>
+                                </p>
+                                <p>
+                                    <button type="submit" class="av-btn av-btn-primary av-btn-bubble wpcf7-submit">Send Now <i class="fa fa-arrow-right"></i> <span class="bubble_effect"><span class="circle top-left"></span> <span class="circle top-left"></span> <span class="circle top-left"></span> <span class="button effect-button"></span> <span class="circle bottom-right"></span> <span class="circle bottom-right"></span> <span class="circle bottom-right"></span></span></button>
+                                    <span class="ajax-loader"></span>
+                                </p>
+                                <div class="wpcf7-response-output" role="alert" aria-hidden="true"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="av-column-5">
+                    <div class="isiuCss">
+                        <img class="iiCdss" src="{{asset('frontend/images/contacss.jpg')}}">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    <!-- Partners end -->
+</section>
 
-    @endsection
+<section id="contactmap-section" class="contactmap-section av-py-default">
+    <div class="av-container">
+        <div class="av-columns-area">
+            <div class="av-md-column-6 ml-md-0 mx-auto">
+                <div class="contactmapinfo">
+                    <aside class="widget widget-contact">
+                        <div class="contact-area">
+                            <div class="contact-icon"><i class="fa fa-phone"></i></div>
+                            <div class="contact-info">
+                                <span class="title">Phone</span>
+                                <span class="text">+91-9212132955<br>+91-9212132955</span>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="widget widget-contact">
+                        <div class="contact-area">
+                            <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+                            <div class="contact-info">
+                                <span class="title">Email</span>
+                                <span class="text">info@chintamanifinlease
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="widget widget-contact">
+                        <div class="contact-area">
+                            <div class="contact-icon"><i class="fa fa-map-marker"></i></div>
+                            <div class="contact-info">
+                                <span class="title">Address</span>
+                                <span class="text">216, Ansal Vikas Deep Building,Laxmi Nagar District Centre, Near Nirman Vihar Metro Station,Delhi - 110092.</span>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="widget widget-contact">
+                        <div class="contact-area">
+                            <div class="contact-icon"><i class="fa fa-clock-o"></i></div>
+                            <div class="contact-info">
+                                <span class="title">Our Opening Hours</span>
+                                <div class="text">
+                                    <dl class="av-grid-dl">
+                                        <dt>Monday-Friday</dt>
+                                        <dd>8.00am - 6.00pm</dd>
+                                        <dt>Saturday</dt>
+                                        <dd>9.00am - 2.00pm</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4164.24462617836!2d77.28658309299871!3d28.638800668136213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfdce2cb5acab%3A0xeabf9e552554d55d!2sPersonal%20Loan-Chintamani%20Finlease%20Ltd!5e0!3m2!1sen!2sin!4v1626328012129!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection

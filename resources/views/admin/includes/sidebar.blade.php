@@ -34,6 +34,7 @@
                   </a>
                </li>
             </ul>
+         </li>
          <li class="pcoded-hasmenu">
             <a href="javascript:void(0)">
                <span class="pcoded-micon"><i class="fa fa-users" aria-hidden="true"></i></span>
@@ -137,48 +138,101 @@
                      <span class="pcoded-mtext">Loan Type</span>
                   </a>
                   <ul class="pcoded-submenu">
+                     @can('loanTypeServices-read')
                      <li>
-                        <a href="category.php">
+                        <a href="{{route('loan-type-services')}}">
+                           <span class="pcoded-mtext">Loan Type Services</span>
+                        </a>
+                     </li>
+                     @endcan
+                     @can('category-read')
+                     <li>
+                        <a href="{{route('category')}}">
                            <span class="pcoded-mtext">Category</span>
                         </a>
                      </li>
+                     @endcan
+                     @can('subcategory-read')
                      <li>
-                        <a href="sub-category.php">
+                        <a href="{{route('sub-category')}}">
                            <span class="pcoded-mtext">Sub Category</span>
                         </a>
                      </li>
+                     @endcan
+                     @can('city-read')
                      <li>
-                        <a href="city.php">
+                        <a href="{{route('city')}}">
                            <span class="pcoded-mtext">City</span>
                         </a>
                      </li>
+                     @endcan
+                     @can('citypages-read')
                      <li>
-                        <a href="city-pages.php">
+                        <a href="{{route('city-pages')}}">
                            <span class="pcoded-mtext">City pages</span>
                         </a>
                      </li>
-
+                     @endcan
                   </ul>
                </li>
+               @can('ourblogs-read')
                <li>
-                  <a href="blog.php">
+                  <a href="{{route('our-blogs')}}">
                      <span class="pcoded-mtext">Blog</span>
                   </a>
                </li>
-
+               @endcan
+               @can('career-read')
                <li>
-                  <a href="career.php">
+                  <a href="{{route('career')}}">
                      <span class="pcoded-mtext">Career</span>
                   </a>
                </li>
+               @endcan
+               @can('contact-read')
                <li>
-                  <a href="contact.php">
+                  <a href="{{route('contact')}}">
                      <span class="pcoded-mtext">Contact</span>
                   </a>
                </li>
-
+               @endcan
+               @can('insurances-read')
+               <li>
+                  <a href="{{route('insurances')}}">
+                     <span class="pcoded-mtext">Insurances</span>
+                  </a>
+               </li>
+               @endcan
             </ul>
          </li>
+         <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)">
+               <span class="pcoded-micon"><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">LMS</span>
+            </a>
+            <ul class="pcoded-submenu">
+               @can('enquiry-read')
+               <li>
+                  <a href="{{route('enquiry')}}">
+                     <span class="pcoded-mtext">Enquiries</span>
+                  </a>
+               </li>
+               @endcan
+               @can('ManualLeads-read')
+               <li>
+                  <a href="{{route('manual-leads')}}">
+                     <span class="pcoded-mtext">Manual Leads</span>
+                  </a>
+               </li>
+               @endcan
+               <!-- @can('rejection-read')
+               <li>
+                  <a href="{{route('rejection')}}">
+                     <span class="pcoded-mtext">Enquiry Rejection</span>
+                  </a>
+               </li>
+               @endcan -->
+            </ul>
          </li>
       </ul>
    </div>

@@ -15,12 +15,11 @@
                   <div>
                      <aside class="widget widget-contact">
                         <li class="av-button-area">
-                           <a class="btn claa__btnsTTtsy linkCss" href="quick-enquiry.php"> <span>Quick Enquiry</span> </a>
-                           <a class="btn claa__btnsTTtsy linkCss" href="mandate-registration.php">Mandate Registration</a>
-                           <a class="btn claa__btnsTTtsy linkCss" href="career.php">Career</a>
-                           <a class="btn claa__btnsTTtsy linkCss" href="pay-now.php">Pay Now</a>
+                           <a class="btn claa__btnsTTtsy linkCss" href="{{route('quick-enquiry')}}"> <span>Quick Enquiry</span> </a>
+                           <a class="btn claa__btnsTTtsy linkCss" href="{{route('mandate-registration')}}">Mandate Registration</a>
+                           <a class="btn claa__btnsTTtsy linkCss" href="{{route('career')}}">Career</a>
+                           <a class="btn claa__btnsTTtsy linkCss" href="{{route('pay-now')}}">Pay Now</a>
                            <a class="btn claa__btnsTTtsy linkCss" href="tel:+91-9212132955"> <i class="fa fa-phone"></i> Call Us </a>
-                           <!-- <a class="btn claa__btnsTTtsy linkCss" href="dsa-login.php">DSA Login</a> -->
 
                         <li class="widget-wrap">
                            <div class="widget-wrp">
@@ -35,10 +34,8 @@
                                           <ul class="sub-menu">
                                              <li>
                                                 <a href="#!">DSA Login</a>
-                                                <a href="dsa-login.php">DSA Registration</a>
+                                                <a href="{{route('dsa-registration')}}">DSA Registration</a>
                                              </li>
-
-
                                           </ul>
                                        </li>
                                     </ul>
@@ -46,62 +43,13 @@
                               </aside>
                            </div>
                         </li>
-
                         </li>
-
-
-
                      </aside>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <!-- <div class="header-widget">
-         <div class="av-container">
-            <div class="av-columns-area">
-               
-               <div class="av-column-9">
-                  <div class="widget-right text-av-right text-center">
-                     <aside class="widget widget-contact">
-                        <div class="contact-area">
-                           <div class="contact-icon">
-                              <i class="fa fa-envelope"></i>
-                           </div>
-                           <a href="mailto:info@chintamanifinlease.com" class="contact-info">
-                           <span class="title">info@chintamanifinlease.com</span>
-                           </a>
-                        </div>
-                     </aside>
-                     <aside class="widget widget-contact">
-                        <div class="contact-area">
-                           <div class="contact-icon">
-                              <i class="fa fa-whatsapp"></i>
-                           </div>
-                           <a href="tel:+919212132955" class="contact-info">
-                           <span class="title">+91-9212132955</span>
-                           </a>
-                        </div>
-                     </aside>
-                      
-                  </div>
-               </div>
-               <div class="av-column-3">
-                  <div class="float__rights widget-left text-av-left text-center">
-                     <aside class="share-toolkit widget widget_social_widget">
-                        <ul>
-                           <li><a href="https://www.facebook.com/pages/category/Financial-Service/Chintamani-Finlease-Ltd-884067228355110/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                           <li><a href="https://twitter.com/chintamanifinle"  target="_blank"><i class="fa fa-twitter"></i></a></li>
-                           <li><a href="https://in.linkedin.com/company/chintamani-finlease-ltd" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                           <li><a href="https://www.instagram.com/chintamani_finlease" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                     </aside>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div> -->
-
    </div>
    <div class="navigator-wrapper">
       <div class="theme-mobile-nav sticky-nav ">
@@ -111,7 +59,7 @@
                   <div class="theme-mobile-menu">
                      <div class="mobile-logo">
                         <div class="logo">
-                           <a href="index.php" class="site-title">
+                           <a href="{{url('/')}}" class="site-title">
                               <img src="{{asset('frontend/images/logo/logo.png')}}" alt="Logo">
                            </a>
                         </div>
@@ -142,13 +90,11 @@
                                     <div class=" widget-left text-av-left text-center">
                                        <div class="team-thumber">
                                           <aside class="widget widget_social_widget">
-
                                              <ul>
                                                 <li><a href="https://www.facebook.com/pages/category/Financial-Service/Chintamani-Finlease-Ltd-884067228355110/" target="_blank"><i class="fa fa-facebook"></i></a></li>
                                                 <li><a href="https://twitter.com/chintamanifinle" target="_blank"><i class="fa fa-twitter"></i></a></li>
                                                 <li><a href="https://in.linkedin.com/company/chintamani-finlease-ltd" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                                                 <li><a href="https://www.instagram.com/chintamani_finlease" target="_blank"><i class="fa fa-instagram"></i></a></li>
-
                                              </ul>
                                           </aside>
                                        </div>
@@ -203,7 +149,7 @@
                <div class="av-columns-area">
                   <div class="av-column-2 my-auto">
                      <div class="logo">
-                        <a href="index.php" class="site-title"><img src="{{asset('frontend/images/logo/logo.png')}}" alt="Gradiant" style="margin-left: -40px;"></a>
+                        <a href="{{url('/')}}" class="site-title"><img src="{{asset('frontend/images/logo/logo.png')}}" alt="Gradiant" style="margin-left: -40px;"></a>
                      </div>
                   </div>
                   <div class="av-column-10 my-auto">
@@ -211,18 +157,16 @@
                         <nav class="menubar">
                            <ul id="menu-primary-menu" class="menu-wrap">
                               <li class="menu-item active">
-                                 <a href="index.php">Home</a>
+                                 <a href="{{url('/')}}">Home</a>
                               </li>
                               <li class="menu-item dropdown">
                                  <a href="#!">About</a>
                                  <span class="mobile-toggler d-av-none"><button type="button" class="fa fa-chevron-right" aria-label="Mobile Toggler"></button></span>
                                  <ul class="dropdown-menu">
-                                    <li class="menu-item"><a href="about-us.php">About Us</a></li>
-                                    <li class="menu-item"><a href="why-choose-us.php">Why Choose Us</a></li>
+                                    <li class="menu-item"><a href="{{route('about-us')}}">About Us</a></li>
+                                    <li class="menu-item"><a href="{{route('why-choose')}}">Why Choose Us</a></li>
                                  </ul>
                               </li>
-
-
                               <li class="menu-item dropdown">
                                  <a href="javascript:void(0)">Loan Type</a>
                                  <span class="mobile-toggler d-av-none"><button type="button" class="fa fa-chevron-right" aria-label="Mobile Toggler"></button></span>
@@ -276,9 +220,9 @@
                                     <li class="menu-item"><a href="#!">Loan Against Property</a></li>
                                  </ul>
                               </li> -->
-                              <li class="menu-item"><a href="insurance.php">Insurance</a></li>
-                              <li class="menu-item"><a href="blog.php">Blog</a></li>
-                              <li class="menu-item"><a href="contact.php">Contact</a></li>
+                              <li class="menu-item"><a href="{{route('insurance')}}">Insurance</a></li>
+                              <li class="menu-item"><a href="{{route('blog')}}">Blog</a></li>
+                              <li class="menu-item"><a href="{{route('contact-us')}}">Contact</a></li>
                            </ul>
                         </nav>
                         <div class="menu-right">

@@ -17,6 +17,4 @@ class WebController extends Controller
         return view('frontend.car-insurance');
     }
 
-
-
 }

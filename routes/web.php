@@ -14,16 +14,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/about-us', function () {
-	return view('frontend.about-us');
-})->name('about-us');
 
+Route::get('/quick-enquiry', function () {
+	return view('frontend.quick-enquiry');
+})->name('quick-enquiry');
 
-Route::get('/contact-us', function () {
-	return view('frontend.contact-us');
-})->name('contact-us');
+Route::get('/mandate-registration', function () {
+	return view('frontend.mandate-registration');
+})->name('mandate-registration');
+
+Route::get('/pay-now', function () {
+	return view('frontend.pay-now');
+})->name('pay-now');
+
+Route::get('/dsa-registration', function () {
+	return view('frontend.dsa-registration');
+})->name('dsa-registration');
 
 Route::get('/', [App\Http\Controllers\Frontend\CustomerController::class, 'index'])->name('home');
+Route::get('about-us', [App\Http\Controllers\Frontend\CustomerController::class, 'aboutus'])->name('about-us');
+Route::get('why-choose', [App\Http\Controllers\Frontend\CustomerController::class, 'whychooseus'])->name('why-choose');
+Route::get('contact-us', [App\Http\Controllers\Frontend\CustomerController::class, 'contactus'])->name('contact-us');
+Route::get('blog', [App\Http\Controllers\Frontend\CustomerController::class, 'blog'])->name('blog');
+Route::get('insurance', [App\Http\Controllers\Frontend\CustomerController::class, 'insurance'])->name('insurance');
+Route::get('career', [App\Http\Controllers\Frontend\CustomerController::class, 'career'])->name('career');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -117,6 +131,34 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::post('/faq-update/{id}', [App\Http\Controllers\FaqController::class, 'update'])->name('faq.update');
 	Route::get('/faq-delete/{id}', [App\Http\Controllers\FaqController::class, 'destroy'])->name('faq.delete');
 
+	Route::get('/city', [App\Http\Controllers\CityController::class, 'index'])->name('city');
+	Route::get('/city-add', [App\Http\Controllers\CityController::class, 'create'])->name('city.add');
+	Route::post('/city-store', [App\Http\Controllers\CityController::class, 'store'])->name('city.store');
+	Route::get('/city-edit/{id}', [App\Http\Controllers\CityController::class, 'edit'])->name('city.edit');
+	Route::post('/city-update/{id}', [App\Http\Controllers\CityController::class, 'update'])->name('city.update');
+	Route::get('/city-delete/{id}', [App\Http\Controllers\CityController::class, 'destroy'])->name('city.delete');
+
+	Route::get('/city-pages', [App\Http\Controllers\CityPagesController::class, 'index'])->name('city-pages');
+	Route::get('/city-pages-add', [App\Http\Controllers\CityPagesController::class, 'create'])->name('city-pages.add');
+	Route::post('/city-pages-store', [App\Http\Controllers\CityPagesController::class, 'store'])->name('city-pages.store');
+	Route::get('/city-pages-edit/{id}', [App\Http\Controllers\CityPagesController::class, 'edit'])->name('city-pages.edit');
+	Route::post('/city-pages-update/{id}', [App\Http\Controllers\CityPagesController::class, 'update'])->name('city-pages.update');
+	Route::get('/city-pages-delete/{id}', [App\Http\Controllers\CityPagesController::class, 'destroy'])->name('city-pages.delete');
+
+	Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');
+	Route::get('/category-add', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.add');
+	Route::post('/category-store', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+	Route::get('/category-edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
+	Route::post('/category-update/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+	Route::get('/category-delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
+
+	Route::get('/sub-category', [App\Http\Controllers\SubCategoryController::class, 'index'])->name('sub-category');
+	Route::get('/sub-category-add', [App\Http\Controllers\SubCategoryController::class, 'create'])->name('sub-category.add');
+	Route::post('/sub-category-store', [App\Http\Controllers\SubCategoryController::class, 'store'])->name('sub-category.store');
+	Route::get('/sub-category-edit/{id}', [App\Http\Controllers\SubCategoryController::class, 'edit'])->name('sub-category.edit');
+	Route::post('/sub-category-update/{id}', [App\Http\Controllers\SubCategoryController::class, 'update'])->name('sub-category.update');
+	Route::get('/sub-category-delete/{id}', [App\Http\Controllers\SubCategoryController::class, 'destroy'])->name('sub-category.delete');
+
 	Route::get('/get-free-score', [App\Http\Controllers\GetfreescoreController::class, 'index'])->name('get-free-score');
 	Route::get('/get-free-score-add', [App\Http\Controllers\GetfreescoreController::class, 'create'])->name('get-free-score.add');
 	Route::post('/get-free-score-store', [App\Http\Controllers\GetfreescoreController::class, 'store'])->name('get-free-score.store');
@@ -130,4 +172,44 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('/why-choose-us-edit/{id}', [App\Http\Controllers\WhyChooseuscoreController::class, 'edit'])->name('why-choose-us.edit');
 	Route::post('/why-choose-us-update/{id}', [App\Http\Controllers\WhyChooseuscoreController::class, 'update'])->name('why-choose-us.update');
 	Route::get('/why-choose-us-delete/{id}', [App\Http\Controllers\WhyChooseuscoreController::class, 'destroy'])->name('why-choose-us.delete');
+
+	Route::get('/our-blogs', [App\Http\Controllers\OurBlogsController::class, 'index'])->name('our-blogs');
+	Route::get('/our-blogs-add', [App\Http\Controllers\OurBlogsController::class, 'create'])->name('our-blogs.add');
+	Route::post('/our-blogs-store', [App\Http\Controllers\OurBlogsController::class, 'store'])->name('our-blogs.store');
+	Route::get('/our-blogs-edit/{id}', [App\Http\Controllers\OurBlogsController::class, 'edit'])->name('our-blogs.edit');
+	Route::post('/our-blogs-update/{id}', [App\Http\Controllers\OurBlogsController::class, 'update'])->name('our-blogs.update');
+	Route::get('/our-blogs-delete/{id}', [App\Http\Controllers\OurBlogsController::class, 'destroy'])->name('our-blogs.delete');
+
+	Route::get('/career', [App\Http\Controllers\CareerController::class, 'index'])->name('career');
+	Route::get('/career-add', [App\Http\Controllers\CareerController::class, 'create'])->name('career.add');
+	Route::post('/career-store', [App\Http\Controllers\CareerController::class, 'store'])->name('career.store');
+	Route::get('/career-edit/{id}', [App\Http\Controllers\CareerController::class, 'edit'])->name('career.edit');
+	Route::post('/career-update/{id}', [App\Http\Controllers\CareerController::class, 'update'])->name('career.update');
+	Route::get('/career-delete/{id}', [App\Http\Controllers\CareerController::class, 'destroy'])->name('career.delete');
+
+	Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+	Route::get('/contact-add', [App\Http\Controllers\ContactController::class, 'create'])->name('contact.add');
+	Route::post('/contact-store', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+	Route::get('/contact-edit/{id}', [App\Http\Controllers\ContactController::class, 'edit'])->name('contact.edit');
+	Route::post('/contact-update/{id}', [App\Http\Controllers\ContactController::class, 'update'])->name('contact.update');
+	Route::get('/contact-delete/{id}', [App\Http\Controllers\ContactController::class, 'destroy'])->name('contact.delete');
+
+	Route::get('/insurances', [App\Http\Controllers\InsurancesController::class, 'index'])->name('insurances');
+	Route::get('/insurances-add', [App\Http\Controllers\InsurancesController::class, 'create'])->name('insurances.add');
+	Route::post('/insurances-store', [App\Http\Controllers\InsurancesController::class, 'store'])->name('insurances.store');
+	Route::get('/insurances-edit/{id}', [App\Http\Controllers\InsurancesController::class, 'edit'])->name('insurances.edit');
+	Route::post('/insurances-update/{id}', [App\Http\Controllers\InsurancesController::class, 'update'])->name('insurances.update');
+	Route::get('/insurances-delete/{id}', [App\Http\Controllers\InsurancesController::class, 'destroy'])->name('insurances.delete');
+
+	Route::get('/loan-type-services', [App\Http\Controllers\LoantypeServicesController::class, 'index'])->name('loan-type-services');
+	Route::get('/loan-type-services-add', [App\Http\Controllers\LoantypeServicesController::class, 'create'])->name('loan-type-services.add');
+	Route::post('/loan-type-services-store', [App\Http\Controllers\LoantypeServicesController::class, 'store'])->name('loan-type-services.store');
+	Route::get('/loan-type-services-edit/{id}', [App\Http\Controllers\LoantypeServicesController::class, 'edit'])->name('loan-type-services.edit');
+	Route::post('/loan-type-services-update/{id}', [App\Http\Controllers\LoantypeServicesController::class, 'update'])->name('loan-type-services.update');
+	Route::get('/loan-type-services-delete/{id}', [App\Http\Controllers\LoantypeServicesController::class, 'destroy'])->name('loan-type-services.delete');
+
+	Route::get('/rejection', [App\Http\Controllers\InquiryController::class, 'rejection'])->name('rejection');
+	Route::get('/enquiry', [App\Http\Controllers\InquiryController::class, 'enquiry'])->name('enquiry');
+	Route::get('/manual-leads', [App\Http\Controllers\InquiryController::class, 'manual'])->name('manual-leads');
+	
 });
