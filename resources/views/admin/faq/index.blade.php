@@ -66,7 +66,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table id="example" class="table table-striped table-bordered ">
+                                                    <table id="faq_data" class="table table-striped table-bordered ">
                                                         <thead class="bg-primary text-white">
                                                             <tr>
                                                                 <th>Sl No</th>
@@ -77,22 +77,6 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach($complete as $key => $value)
-                                                            <tr>
-                                                                <td>{{++$key}}</td>
-                                                                <td>{{$value->heading}}</td>
-                                                                <td><img src="{{asset('uploads/article')}}/{{$value->image}}" style="width: 250px; height: 100%;" /></td>
-                                                                <td>{{$value->content}}</td>
-                                                                <td class="text-right py-0 align-middle">
-                                                                    <div class="btn-group btn-group-sm">
-                                                                        <a href="{{ route('faq.edit',$value->id) }}" class="btn btn-warning deleteAsk mgnStyle ">Edit</a>
-                                                                        <br>
-                                                                        <br>
-                                                                        <a href="{{ route('faq.delete',$value->id) }}" class="btn btn-primary btn-sm deleteAsk">Delete</i></a>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -109,10 +93,69 @@
     </div>
 </div>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#description'))
-        .catch(error => {
-            console.error(error);
+    var list = '{{ route("faq") }}';
+    var titleName = 'faq List';
+    $(document).ready(function() {
+        table_schedule(list);
+    });
+
+    function table_schedule(list) {
+        var tableid = 'faq_data';
+        var table = $('#' + tableid).DataTable({
+            'responsive': true, // Table pagination
+            "processing": true,
+            "serverSide": true,
+            "bDestroy": true,
+            "bLengthChange": false,
+            // 'dom': 'lBfrtip', // Bottom left status text
+            "bAutoWidth": false,
+            "bScrollCollapse": true,
+            "bFilter": false,
+            "order": [
+                [0, "desc"]
+            ],
+            "ajax": {
+                "url": list,
+                "type": "GET",
+                'dataType': "json",
+                data: function(d) {
+                    d._token = "{{ csrf_token() }}";
+                    d.level = 1;
+                },
+            },
+            "columns": [
+                {
+                    "data": "id",
+                    "orderable": false
+                },
+                {
+                    "data": "heading"
+                },
+                {
+                    "data": "image"
+                },
+                {
+                    "data": "content"
+                },
+                {
+                    "data": "action"
+                }
+
+            ],
+            'columnDefs': [{
+                orderable: false
+            }],
+            fnDrawCallback: function(oSettings) {
+                var totalPages = this.api().page.info().pages;
+                if (totalPages == 1) {
+                    jQuery('.dataTables_paginate').hide();
+                } else {
+                    jQuery('.dataTables_paginate').show();
+                }
+            }
+
         });
+
+    }
 </script>
 @endsection

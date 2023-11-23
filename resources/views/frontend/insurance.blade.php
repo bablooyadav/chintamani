@@ -8,54 +8,14 @@
                     <h3>Insurance </h3>
                 </div>
                 <div class="av-columns-area funfact-wrapper">
+                    @foreach($complete as $insurance)
                     <div class="av-column-3 av-sm-column-6">
                         <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/life-insurance.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">Life Insurance</a> </h5>
+                            <img class="insuimgCss" src="{{asset('uploads/article')}}/{{$insurance->image}}">
+                            <h5> <a class="instxtCss" href="life-insurance.php">{{$insurance->title}}</a> </h5>
                         </div>
                     </div>
-                    <div class="av-column-3 av-sm-column-6">
-                        <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/HealthInsurance.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">Health Insurance</a> </h5>
-                        </div>
-                    </div>
-                    <div class="av-column-3 av-sm-column-6">
-                        <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/car-insurance.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">Car Insurance</a> </h5>
-                        </div>
-                    </div>
-                    <div class="av-column-3 av-sm-column-6">
-                        <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/HomeInsurance.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">Home Insurance</a> </h5>
-                        </div>
-                    </div>
-                    <div class="av-column-3 av-sm-column-6">
-                        <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/Two-Wheeler.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">Two-Wheeler</a> </h5>
-                        </div>
-                    </div>
-                    <div class="av-column-3 av-sm-column-6">
-                        <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/travel-insurance.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">Travel Insurance</a> </h5>
-                        </div>
-                    </div>
-                    <div class="av-column-3 av-sm-column-6">
-                        <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/Insurance__Plan.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">ULIP Plans</a> </h5>
-                        </div>
-                    </div>
-                    <div class="av-column-3 av-sm-column-6">
-                        <div class="funfact-item insurCss">
-                            <img class="insuimgCss" src="{{asset('frontend/images/insurance-agent.png')}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">Personal Insurance</a> </h5>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
