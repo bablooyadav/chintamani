@@ -60,4 +60,14 @@ class ApplyLoan extends Model
         'view_status',
         'view_exp',
     ];
+
+    public function userDetail()
+    {
+        return $this->hasOne(UserPersonalDetails::class, 's_no', 'user_id');
+    }
+    
+    public function dsaDetail()
+    {
+        return $this->hasOne(DsaDetails::class, 'dsa_id', 'user_personal_details.dsa_id');
+    }
 }

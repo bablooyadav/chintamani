@@ -130,7 +130,25 @@
                     "data": "order_id"
                 },
                 {
-                    "data": "loan_amount"
+                    "data": "type"
+                },
+                {
+                    "data": "dsa_name"
+                },
+                {
+                    "data": "name"
+                },
+                {
+                    "data": "phone_no"
+                },
+                {
+                    "data": "take_home_salary"
+                },
+                {
+                    "data": "address_city"
+                },
+                {
+                    "data": "daymonth"
                 },
                 {
                     "data": "action"

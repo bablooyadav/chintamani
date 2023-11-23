@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ApplyLoan;
+use DateTime;
 
 class VerificationController extends Controller
 {
@@ -37,13 +38,13 @@ class VerificationController extends Controller
             $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
-                $role = ApplyLoan::offset($start)
+                $tabData = ApplyLoan::with('userDetail','dsaDetail')->where('apply_loan.application_status','Verify')->offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
             } else {
                 $search = $request->input('search.value');
-                $role = ApplyLoan::where(function ($query) use ($search) {
+                $tabData = ApplyLoan::with('userDetail','dsaDetail')->where('apply_loan.application_status','Verify')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->offset($start)
@@ -58,15 +59,24 @@ class VerificationController extends Controller
 
             // print_r(DB::getQueryLog());die();
             $data = [];
-            if (!empty($role)) {
+            if (!empty($tabData)) {
                 $count = 0;
-                foreach ($role as $key => $rolevalue) {
-                    //dd($rolevalue->permissions);
+                foreach ($tabData as $key => $v) {
+                    $date1 = new DateTime($v->updated_at);
+                    $date2 = new DateTime('NOW');
+                    $interval = $date1->diff($date2);
+
                     $nestedData['id'] = $count + $start + 1;
-                    $nestedData['order_id'] = $rolevalue->order_id;
-                    $nestedData['loan_amount'] = $rolevalue->loan_amount;
-                    $nestedData['action'] = '<a href=' . route('city.edit', $rolevalue->s_no) . '><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
-                    <a href=' . route('city.delete', $rolevalue->s_no) . '><span style="color:red;"><i class="fa fa-trash" aria-hidden="true"></i></span></a>';
+                    $nestedData['order_id'] = $v->order_id;
+                    $nestedData['type'] = $v->userDetail->type;
+                    $nestedData['dsa_name'] = empty($v->dsaDetail->dsa_name) || $v->userDetail->type != 'dsa' ? '<label class="label label-danger">None</label>' : $v->dsaDetail->dsa_name;
+                    $nestedData['name'] = $v->userDetail->first_name . ' ' . $v->userDetail->last_name;
+                    $nestedData['phone_no'] = $v->userDetail->phone_no;
+                    $nestedData['take_home_salary'] = $v->userDetail->take_home_salary;
+                    $nestedData['address_city'] = $v->userDetail->address_city;
+                    $nestedData['daymonth'] = '<label class="label label-danger">'.$interval->format('%d Days %m Months').'</label>';
+                    $nestedData['action'] = '<a href=' . route('city.edit', $v->s_no) . '><span><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                    <a href=' . route('city.delete', $v->s_no) . '><span style="color:red;"><i class="fa fa-trash" aria-hidden="true"></i></span></a>';
                     $data[] = $nestedData;
                     $count++;
                 }
