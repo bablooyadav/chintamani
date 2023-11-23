@@ -107,7 +107,7 @@
                 </div>
                 <div class="av-column-5">
                     <div class="isiuCss">
-                        <img class="iiCdss" src="{{asset('frontend/images/contacss.jpg')}}">
+                        <img class="iiCdss" src="{{asset('uploads/article')}}/{{$complete->image}}">
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                             <div class="contact-icon"><i class="fa fa-phone"></i></div>
                             <div class="contact-info">
                                 <span class="title">Phone</span>
-                                <span class="text">+91-9212132955<br>+91-9212132955</span>
+                                <span class="text">+91{{$complete->phone}}</span>
                             </div>
                         </div>
                     </aside>
@@ -134,7 +134,7 @@
                             <div class="contact-icon"><i class="fa fa-envelope"></i></div>
                             <div class="contact-info">
                                 <span class="title">Email</span>
-                                <span class="text">info@chintamanifinlease
+                                <span class="text">{{$complete->email}}
                             </div>
                         </div>
                     </aside>
@@ -143,7 +143,7 @@
                             <div class="contact-icon"><i class="fa fa-map-marker"></i></div>
                             <div class="contact-info">
                                 <span class="title">Address</span>
-                                <span class="text">216, Ansal Vikas Deep Building,Laxmi Nagar District Centre, Near Nirman Vihar Metro Station,Delhi - 110092.</span>
+                                <span class="text">{!!$complete->address!!}</span>
                             </div>
                         </div>
                     </aside>
@@ -154,10 +154,10 @@
                                 <span class="title">Our Opening Hours</span>
                                 <div class="text">
                                     <dl class="av-grid-dl">
-                                        <dt>Monday-Friday</dt>
-                                        <dd>8.00am - 6.00pm</dd>
-                                        <dt>Saturday</dt>
-                                        <dd>9.00am - 2.00pm</dd>
+                                        <dt><?php
+                                            $openingHours = explode(',', $complete->our_opening_hours);
+                                            echo implode(',<br>', $openingHours);
+                                            ?></dd>
                                     </dl>
                                 </div>
                             </div>

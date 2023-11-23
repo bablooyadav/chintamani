@@ -76,10 +76,11 @@
         <div class="av-columns-area ">
             <div class="av-column-12">
                 <div class="av-columns-area">
+                    @foreach($compdata as $valuess)
                     <div class="av-column-3">
                         <div class="team-member">
                             <div class="team-thumb" tabindex="0">
-                                <img class="serv__imgs" src="{{asset('frontend/images/Business__loan.jpg')}}" alt="Chintamani All Types Loan Services Provider" title="Chintamani All Types Loan Services Provider">
+                                <img class="serv__imgs" src="{{asset('uploads/article')}}/{{$valuess->image}}" alt="Chintamani All Types Loan Services Provider" title="Chintamani All Types Loan Services Provider">
                                 <div class="team-view"><a href="personal-loan-for-CA.php"><i class="fa fa-eye"></i></a></div>
                                 <div class="team-thumber">
                                     <aside class="widget widget_social_widget">
@@ -93,77 +94,12 @@
                                 </div>
                             </div>
                             <div class="team-info">
-                                <h5><a href="personal-loan-for-CA.php">Business Loan</a></h5>
-                                <p>Unique solutions to achieve your business needs</p>
+                                <h5><a href="personal-loan-for-CA.php">{{$valuess->heading}}</a></h5>
+                                <p>{!!$valuess->content!!}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="av-column-3">
-                        <div class="team-member">
-                            <div class="team-thumb" tabindex="0">
-                                <img class="serv__imgs" src="{{asset('frontend/images/Business__loan.jpg')}}" alt="Chintamani All Types Loan Services Provider" title="Chintamani All Types Loan Services Provider">
-                                <div class="team-view"><a href="personal-loan-for-CA.php"><i class="fa fa-eye"></i></a></div>
-                                <div class="team-thumber">
-                                    <aside class="widget widget_social_widget">
-                                        <ul>
-                                            <li><a href="#!"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#!"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#!"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a href="#!"><i class="fa fa-instagram"></i></a></li>
-                                        </ul>
-                                    </aside>
-                                </div>
-                            </div>
-                            <div class="team-info">
-                                <h5><a href="personal-loan-for-CA.php">Business Loan</a></h5>
-                                <p>Unique solutions to achieve your business needs</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="av-column-3">
-                        <div class="team-member">
-                            <div class="team-thumb" tabindex="0">
-                                <img class="serv__imgs" src="{{asset('frontend/images/Personal__Loan.jpg')}}" alt="Chintamani All Types Loan Services Provider" title="Chintamani All Types Loan Services Provider">
-                                <div class="team-view"><a href="personal-loan-for-CA.php"><i class="fa fa-eye"></i></a></div>
-                                <div class="team-thumber">
-                                    <aside class="widget widget_social_widget">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        </ul>
-                                    </aside>
-                                </div>
-                            </div>
-                            <div class="team-info">
-                                <h5><a href="personal-loan-for-CA.php">Personal Loan</a></h5>
-                                <p>Meet your every dream with ease</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="av-column-3">
-                        <div class="team-member">
-                            <div class="team-thumb" tabindex="0">
-                                <img class="serv__imgs" src="{{asset('frontend/images/Home___Loan.webp')}}" alt="Chintamani All Types Loan Services Provider" title="Chintamani All Types Loan Services Provider">
-                                <div class="team-view"><a href="personal-loan-for-CA.php"><i class="fa fa-eye"></i></a></div>
-                                <div class="team-thumber">
-                                    <aside class="widget widget_social_widget">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        </ul>
-                                    </aside>
-                                </div>
-                            </div>
-                            <div class="team-info">
-                                <h5><a href="personal-loan-for-CA.php">Lap Loan</a></h5>
-                                <p>Take a step into your <br> dream Lap Loan</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -346,7 +282,7 @@
         color: #000;
     }
 </style>
-<section id="cta-section bgerasn" style="background-image: url('{{asset('frontend/images/chintaPartner.jpg')}}');
+<section id="cta-section bgerasn" style="background-image: url('{{asset('uploads/article')}}/{{$become->image}}');
     background-size: cover;
     height: 462px;">
     <div class="styl__pading">
@@ -355,8 +291,8 @@
                 <div class="av-column-7"> </div>
                 <div class="av-column-5">
                     <div class="JoinDasa">
-                        <h2 class="text-white joiunUs">JOIN AS A DSA <br> PARTNER </h2>
-                        <p class="pBcome">Become a Partner Earn Upto <br> Rs 50,000 Every Month</p>
+                        <h2 class="text-white joiunUs">{{$become->heading}}</h2>
+                        <p class="pBcome">{!!$become->content!!}</p>
                         <a class="btn bgnary aapsCss" href="#!">JOIN AS DSA</a>
                     </div>
                 </div>
@@ -378,114 +314,31 @@
         <div class="av-columns-area">
             <div class="av-column-12">
                 <div class="post-carousel owl-carousel owl-theme">
+                    @foreach($blogs as $blogsdata)
                     <article class="post-items">
                         <figure class="post-image post-image-absolute">
                             <div class="featured-image">
                                 <a href="blogs-details.php" class="post-hover">
-                                    <img src="{{asset('frontend/assets/images/blog/blogFullSize/img01.jpg')}}" alt="blog_item">
+                                    <img src="{{asset('uploads/article')}}/{{$blogsdata->image}}" alt="blog_item">
                                 </a>
                             </div>
                         </figure>
                         <div class="post-content">
                             <span class="post-date"> <a href="blogs-details.php"><span>14</span>Dec 2022</a> </span>
-                            <h5 class="post-title"><a href="blogs-details.php" rel="bookmark">5 Tax Tips Your Workforce Should Know</a></h5>
+                            <h5 class="post-title"><a href="blogs-details.php" rel="bookmark">{{$blogsdata->title}}</a></h5>
                             <div class="post-footer">
-                                <p>We don’t need a survey to gauge how many salaried individuals would like to earn more by saving on their taxes. A key issue expected during</p>
+                                <p>
+                                    <?php
+                                    $contentWords = str_word_count(strip_tags($blogsdata->content), 1);
+                                    echo implode(' ', array_slice($contentWords, 0, 25));
+                                    ?>
+                                </p>
                                 <a href="blogs-details.php" class="more-link">Read More</a>
-                                <span class="post-count">01</span>
+                                <span class="post-count">{{$blogsdata->tags}}</span>
                             </div>
                         </div>
                     </article>
-                    <article class="post-items">
-                        <figure class="post-image post-image-absolute">
-                            <div class="featured-image">
-                                <a href="blogs-details.php" class="post-hover">
-                                    <img src="{{asset('frontend/assets/images/blog/blogFullSize/img02.jpg')}}" alt="blog_item">
-                                </a>
-                            </div>
-                        </figure>
-                        <div class="post-content">
-                            <span class="post-date"> <a href="blogs-details.php"><span>15</span>Dec 2022</a> </span>
-                            <h5 class="post-title"><a href="blogs-details.php" rel="bookmark">Chintamani: Your One-Click Solution For Instant Loans</a></h5>
-                            <div class="post-footer">
-                                <p>Unexpected expenses can crop up at any time. In case of an emergency, getting an instant cash loan</p>
-                                <a href="blogs-details.php" class="more-link">Read More</a>
-                                <span class="post-count">02</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="post-items">
-                        <figure class="post-image post-image-absolute">
-                            <div class="featured-image">
-                                <a href="javascript:void(0);" class="post-hover">
-                                    <img src="{{asset('frontend/assets/images/blog/blogFullSize/img03.jpg')}}" alt="blog_item">
-                                </a>
-                            </div>
-                        </figure>
-                        <div class="post-content">
-                            <span class="post-date"> <a href="javascript:void(0);"><span>16</span>Dec 2022</a> </span>
-                            <h5 class="post-title"><a href="javascript:void(0);" rel="bookmark">How To Get Personal Loans Without A Credit Score?</a></h5>
-                            <div class="post-footer">
-                                <p>Life can be a journey full of surprises. You can never anticipate when it will throw a curveball. </p>
-                                <a href="javascript:void(0);" class="more-link">Read More</a>
-                                <span class="post-count">03</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="post-items">
-                        <figure class="post-image post-image-absolute">
-                            <div class="featured-image">
-                                <a href="javascript:void(0);" class="post-hover">
-                                    <img src="{{asset('frontend/assets/images/blog/blogFullSize/img01.jpg')}}" alt="blog_item">
-                                </a>
-                            </div>
-                        </figure>
-                        <div class="post-content">
-                            <span class="post-date"> <a href="javascript:void(0);"><span>17</span>Dec 2022</a> </span>
-                            <h5 class="post-title"><a href="javascript:void(0);" rel="bookmark">5 Tax Tips Your Workforce Should Know</a></h5>
-                            <div class="post-footer">
-                                <p>We don’t need a survey to gauge how many salaried individuals would like to earn more by saving on their taxes. A key issue expected during</p>
-                                <a href="javascript:void(0);" class="more-link">Read More</a>
-                                <span class="post-count">01</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="post-items">
-                        <figure class="post-image post-image-absolute">
-                            <div class="featured-image">
-                                <a href="javascript:void(0);" class="post-hover">
-                                    <img src="{{asset('frontend/assets/images/blog/blogFullSize/img02.jpg')}}" alt="blog_item">
-                                </a>
-                            </div>
-                        </figure>
-                        <div class="post-content">
-                            <span class="post-date"> <a href="javascript:void(0);"><span>18</span>Dec 2022</a> </span>
-                            <h5 class="post-title"><a href="javascript:void(0);" rel="bookmark">Chintamani: Your One-Click Solution For Instant Loans</a></h5>
-                            <div class="post-footer">
-                                <p>Unexpected expenses can crop up at any time. In case of an emergency, getting an instant cash loan</p>
-                                <a href="javascript:void(0);" class="more-link">Read More</a>
-                                <span class="post-count">02</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="post-items">
-                        <figure class="post-image post-image-absolute">
-                            <div class="featured-image">
-                                <a href="javascript:void(0);" class="post-hover">
-                                    <img src="{{asset('frontend/assets/images/blog/blogFullSize/img03.jpg')}}" alt="blog_item">
-                                </a>
-                            </div>
-                        </figure>
-                        <div class="post-content">
-                            <span class="post-date"> <a href="javascript:void(0);"><span>19</span>Dec 2022</a> </span>
-                            <h5 class="post-title"><a href="javascript:void(0);" rel="bookmark">How To Get Personal Loans Without A Credit Score?</a></h5>
-                            <div class="post-footer">
-                                <p>Life can be a journey full of surprises. You can never anticipate when it will throw a curveball. </p>
-                                <a href="javascript:void(0);" class="more-link">Read More</a>
-                                <span class="post-count">03</span>
-                            </div>
-                        </div>
-                    </article>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -658,45 +511,16 @@
         <div class="av-columns-area">
             <div class="av-column-12">
                 <div class="av-columns-area faq-type">
+                    @foreach($faqdata as $faq)
                     <div class="av-column-6 faqwbCss faq-item technical">
                         <div class="accordion accordion-default">
-                            <div class="accordion-title"><button type="button" class="accordion-button"><span class="text-white">Chintamani & the benefits </span> <i class="fa fa-plus"></i></button></div>
+                            <div class="accordion-title"><button type="button" class="accordion-button"><span class="text-white">{{$faq->heading}}</span> <i class="fa fa-plus"></i></button></div>
                             <div class="accordion-content">
-                                <p>Chintamani Finlease Limited is one of the fastest growing Non-Banking Financial Company (NBFC) for Personal loan in Delhi Ncr, business loan, gold loan, loan against property and car loan. Within a span of 28+ years of operations, it has created a distinct image for itself in the industry. We are an RBI registered NBFC and acting as a quick and easy credit provider to all the sections of the society.</p>
-                                <p>Since our inception year 1995, we continuously thrive towards becoming reputed NBFC through ensuring highest quality delivery and customer relations.</p>
+                                <p>{!!$faq->content!!}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="av-column-6 faqwbCss faq-item general">
-                        <div class="accordion accordion-default">
-                            <div class="accordion-title"><button type="button" class="accordion-button"><span class="text-white">What is Chintamani ? </span> <i class="fa fa-plus"></i></button></div>
-                            <div class="accordion-content">It is a long established fact that a reader will distracted by the readable content of a page when.</div>
-                        </div>
-                    </div>
-                    <div class="av-column-6 faqwbCss faq-item pre-sales">
-                        <div class="accordion accordion-default">
-                            <div class="accordion-title"><button type="button" class="accordion-button"><span class="text-white">Frequently Asked </span> <i class="fa fa-plus"></i></button></div>
-                            <div class="accordion-content">It is a long established fact that a reader will distracted by the readable content of a page when.</div>
-                        </div>
-                    </div>
-                    <div class="av-column-6 faqwbCss faq-item common">
-                        <div class="accordion accordion-default">
-                            <div class="accordion-title"><button type="button" class="accordion-button"><span class="text-white">Frequently Asked </span> <i class="fa fa-plus"></i></button></div>
-                            <div class="accordion-content">It is a long established fact that a reader will distracted by the readable content of a page when.</div>
-                        </div>
-                    </div>
-                    <div class="av-column-6 faqwbCss faq-item affiliates">
-                        <div class="accordion accordion-default">
-                            <div class="accordion-title"><button type="button" class="accordion-button"><span class="text-white">Frequently Asked </span> <i class="fa fa-plus"></i></button></div>
-                            <div class="accordion-content">It is a long established fact that a reader will distracted by the readable content of a page when.</div>
-                        </div>
-                    </div>
-                    <div class="av-column-6 faqwbCss faq-item common">
-                        <div class="accordion accordion-default">
-                            <div class="accordion-title"><button type="button" class="accordion-button"><span class="text-white">Frequently Asked </span> <i class="fa fa-plus"></i></button></div>
-                            <div class="accordion-content">It is a long established fact that a reader will distracted by the readable content of a page when.</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
