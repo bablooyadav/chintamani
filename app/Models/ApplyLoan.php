@@ -65,6 +65,10 @@ class ApplyLoan extends Model
     {
         return $this->hasOne(UserPersonalDetails::class, 's_no', 'user_id');
     }
+    public function users()
+    {
+        return $this->hasOne(User::class, 'id', 'updated_by');
+    }
     
     public function dsaDetail()
     {

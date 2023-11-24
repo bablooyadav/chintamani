@@ -235,12 +235,34 @@
                @endcan -->
             </ul>
          </li>
+
+
          <li>
             <a href="{{ route('verification.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-home"></i></span>
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
                <span class="pcoded-mtext">Verification</span>
             </a>
          </li>
+         <li>
+            <a href="{{ route('appliedloans.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Applied Loans</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ route('holdloans.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Hold Loans</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ route('processingloans.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Processing Loans</span>
+            </a>
+         </li>
+
+
       </ul>
    </div>
 </nav>

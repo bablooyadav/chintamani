@@ -9,7 +9,7 @@
                         <div class="col-lg-8">
                             <div class="page-header-title">
                                 <div class="d-inline">
-                                    <h4>Verification List</h4>
+                                    <h4>Applied Loans</h4>
                                 </div>
                             </div>
                         </div>
@@ -17,7 +17,7 @@
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item" style="float: left;"> <a href="#!">Home</a> </li>
-                                    <li class="breadcrumb-item" style="float: left;"> <a href="#!">Verification List</a> </li>
+                                    <li class="breadcrumb-item" style="float: left;"> <a href="#!">Applied Loans</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -68,10 +68,8 @@
                                                                 <th>Salary</th>
                                                                 <th>City</th>
                                                                 <th>Delay Days</th>
-                                                                <th>Apply Date</th>
-                                                                <th>Assigned To</th>
-                                                                <th>Verified By</th>
-                                                                <th>Manage</th>
+                                                                <th>Applied Date</th>
+                                                                <th>Applied By/Assigned to</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -87,97 +85,15 @@
                         </div>
                     </div>
 
-                    <div class="tab-row">
-                        <!-- begin col-6 -->
-                        <div class="col-lg-12">
-                            <ul class="nav nav-tabs notification">
-                                <li class="nav-items">
-                                    <a href="#default-tab-1" data-toggle="tab" class="nav-link active">
-                                        <span class="d-sm-none">SMS</span>
-                                        <span class="d-sm-block d-none">SMS Section</span>
-                                    </a>
-                                </li>
-                                <li class="nav-items">
-                                    <a href="#default-tab-2" data-toggle="tab" class="nav-link">
-                                        <span class="d-sm-none">Email</span>
-                                        <span class="d-sm-block d-none">Email Section</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane fade active show" id="default-tab-1">
-                                    <form action="#" id="RingCustomersmsForm">
-                                        <div class="tab-row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <select class="form-control border-input" name="smstype" id="smstype" onchange="selectmsgType(this)">
-                                                        <option value="">--Select an option--</option>
-                                                        <!-- 1707164034891305017 -->
-                                                        <option value="1707166755915758378">Promotion Message</option>
-                                                        <!-- 1707164015083128933 -->
-                                                        <!-- 1707166738115898113 -->
-                                                        <option value="1707166738115898113">Reminder messages</option>
-                                                    </select>
-                                                    <label style="float:left;">Message</label>
-                                                    <textarea type="text" class="form-control border-input" placeholder="Message" name="text" id="text" value="" autofocus></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd">Send</button>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </form>
-                                </div>
-                                <div class="tab-pane fade" id="default-tab-2">
-                                    <form action="#" id="RingCustomerMailForm">
-                                        <div class="tab-row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label style="float:left;">Subject</label>
-                                                    <input type="text" class="form-control border-input" placeholder="Subject" name="subject" id="subject" value="" required="required" autofocus>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label style="float:left;">E-mail</label>
-                                                    <textarea type="text" class="form-control border-input" placeholder="Message" name="mailBody" id="mailBody" value="" required="required" autofocus></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd">Send</button>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end col-6 -->
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
-    function selectmsgType(msgType) {
-        var msg_type = msgType.value;
-        console.log(msgType.value);
-        if (msg_type == '1707166755915758378') {
-            $message = 'Dear Customer, Thanks for showing Interest in Chintamani Finlease Ltd. Kindly apply online application by clicking on the link now: www.chintamanifinlease.com/applyloan and get loan in short period of time. For more Details Call us: +91 9212132955 Team Chintamani Finlease Ltd';
-        } else {
-            $message = 'Dear Customer, We have received your application for personal loan but your are unable to receive our calls. Please complete your online application process by clicking on the link now:www.chintamanifinlease.com/applyloan and get loan in short period of time. For more Details Call us: +91 9212132955 Team Chintamani Finlease Ltd';
-        }
-        $("[name=text]").val($message);
-    }
-</script>
-<script>
-    var list = '{{ route("verification.loan") }}';
-    var titleName = 'Verification List';
+    var list = '{{ route("appliedloans.loan") }}';
+    var titleName = 'Applied Loans';
     $(document).ready(function() {
         table_schedule(list);
     });
@@ -239,12 +155,6 @@
                 },
                 {
                     "data": "assigned_to"
-                },
-                {
-                    "data": "verify_by"
-                },
-                {
-                    "data": "manage"
                 },
                 {
                     "data": "action"

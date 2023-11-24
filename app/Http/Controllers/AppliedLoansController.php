@@ -8,7 +8,7 @@ use App\Models\ApplyLoan;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
-class VerificationController extends Controller
+class AppliedLoansController extends Controller
 {
     // function __construct()
     // {
@@ -39,20 +39,20 @@ class VerificationController extends Controller
             $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
-                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Verify')->offset($start)
+                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Pending')->offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
             } else {
                 $search = $request->input('search.value');
-                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Verify')->where(function ($query) use ($search) {
+                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Pending')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
-                $totalFiltered = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Verify')->where(function ($query) use ($search) {
+                $totalFiltered = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Pending')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->count();
@@ -66,24 +66,6 @@ class VerificationController extends Controller
                     $date1 = new DateTime($v->updated_at);
                     $date2 = new DateTime('NOW');
                     $interval = $date1->diff($date2);
-                    if ($v->view_by) {
-                        $manage = '<a class="btn btn-info" onclick="changeLoanDactiveStatus(this)" apply_id="'.$v->order_id.'">Change Close Status</a>';
-                    }else{
-                        $manage = '<a class="btn btn-warning" onclick="" apply_id="'.$v->s_no.'" order_id="'.$v->order_id.'">Opened File Summary </a>';
-                    }
-
-                    if (Auth::user()->role == 1  || $v->view_by == '' || $v->view_by == Auth::user()->id || $v->view_by == '0') {
-                        $action = '<a href="javascript:void()" class="btn btn-primary" onclick="">View A</a>';
-                    }else{
-                        $action = '<a href="javascript:void()" class="btn btn-primary" onclick="javascript:alert("File already opened");">View A </a>';
-                    }
-
-                    if ($v->is_gurrantor == 1) {
-                        $action1 = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="'.$v->user_id.'">View G';
-                    }
-                    if (Auth::user()->role == 1) {
-                        $action2 = '<a class="btn btn-danger" onclick="deleteThisLoan(this)" order_id="'.$v->order_id.'">Delete</a>';
-                    }
 
                     $nestedData['id'] = $count + $start + 1;
                     $nestedData['order_id'] = $v->order_id;
@@ -96,9 +78,8 @@ class VerificationController extends Controller
                     $nestedData['day_month'] = '<label class="label label-danger">'.$interval->format('%d Days %m Months').'</label>';
                     $nestedData['applied_date'] = date('d-m-Y', strtotime($v->applied_date));
                     $nestedData['assigned_to'] = @$v->users->first_name . ' ' . @$v->users->last_name;
-                    $nestedData['verify_by'] = @$v->users->first_name . ' ' . @$v->users->last_name;
-                    $nestedData['manage'] = $manage;
-                    $nestedData['action'] = @$action . ' ' . '<a href="" class="btn btn-dark">Add G</a>' . ' ' . @$action1 . ' ' . @$action2;
+                    $nestedData['action'] = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="'.$v->user_id.'">View G
+                    <a href="" class="btn btn-dark">Add G</a>';
                     $data[] = $nestedData;
                     $count++;
                 }
@@ -112,7 +93,7 @@ class VerificationController extends Controller
             echo json_encode($json_data);
             exit;
         }
-        return view('admin.all-loans.index', compact('complete'));
+        return view('admin.all-loans.applied_loans', compact('complete'));
     }
 
     /**
