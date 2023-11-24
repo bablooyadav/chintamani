@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Career;
 use App\Models\Yourachievements;
 use App\Models\ContactUs;
+use App\Models\Aboutus;
 
 use Auth;
 
@@ -35,13 +36,13 @@ class CustomerController extends Controller
 
     public function aboutus()
     {
-
-        return view('frontend.about-us');
+        $about = Aboutus::first();
+        return view('frontend.about-us',compact('about'));
     }
     public function whychooseus()
     {
-
-        return view('frontend.why-choose-us');
+        $whychooseus = Yourachievements::where('status', 9)->get();
+        return view('frontend.why-choose-us',compact('whychooseus'));
     }
 
     public function contactus()
@@ -49,10 +50,25 @@ class CustomerController extends Controller
         $complete = ContactUs::first();
         return view('frontend.contact-us',compact('complete'));
     }
+
     public function blog()
     {
         $blogs = Career::where('status', 2)->get();
         return view('frontend.blog',compact('blogs'));
+    }
+
+    public function blogdetails($id)
+    {
+        $ids = decrypt($id);
+        $blogdetails = Career::where('id', $ids)->first();
+        return view('frontend.blogdetails',compact('blogdetails'));
+    }
+
+    public function insurancedetails($id)
+    {
+        $ids = decrypt($id);
+        $insurancedetails = Career::where('id', $ids)->first();
+        return view('frontend.insurancedetails',compact('insurancedetails'));
     }
 
     public function insurance()
@@ -60,9 +76,9 @@ class CustomerController extends Controller
         $complete = Career::where('status', 3)->get();
         return view('frontend.insurance',compact('complete'));
     }
-    public function career()
+    public function careers()
     {
-
-        return view('frontend.career');
+        $careers = Career::where('status',1)->get();
+        return view('frontend.careers',compact('careers'));
     }
 }

@@ -20,24 +20,7 @@
 <section id="about-section" class="about-section av-py-default shapes-section">
     <div class="av-container">
         <div class="av-columns-area">
-            <div class="av-column-5 mb-4 mb-av-0">
-                <div class="about-content">
-
-                    <img src="{{asset('frontend/assets/images/about/about_1st.png')}}" alt="about_item">
-
-                </div>
-            </div>
-            <div class="av-column-7">
-                <div class="about-panel">
-                    <div class="heading-title">
-                        <h6>About Us</h6>
-                        <h5>Chintamani Finlease Limited is one of the fastest growing Non-Banking Financial Company (NBFC) for Personal loan</h5>
-                    </div>
-                    <p>Our vision is to be number one most reputable non banking financial services provider in Delhi NCR region.</p>
-                    <p>Chintamani Finlease is an RBI registered non banking financial company (NBFC) operating for last 25+ years from Delhi. Our endeavor has always been to become an easy to access and reliable credit provider to various sections of the society in Delhi NCR.</p>
-                    <p>Since our inception year 1995, we continuously thrive towards becoming reputed NBFC through ensuring highest quality delivery and customer relations. Chintamani Finlease Ltd. came into existence when Late Mr. Puran Chand Jain (Ex-banker) saw a dream to create a financing firm which can provide easy and fast credit facilities to all sections of the society at the same time creating trusted relationships with its customers. Chintamani Finlease is your friend and partner, who extend their helping hand towards you to make your dreams come true on your required time. It is a firm managed by professional and skilled manpower under the leadership of Mr. Pradeep Kumar Jain, MBA CAIIB. He is an Ex banker with 25 years of rich experience in Nationalized banks.</p>
-                </div>
-            </div>
+            <p>{!! $about->content !!}</p>
         </div>
     </div>
 </section>
@@ -46,8 +29,6 @@
         <div class="av-columns-area">
             <div class="av-column-12">
                 <div class="  wow fadeInUp">
-                    <p>We as a company's belief in transparency and help customers about the credit policy, CIBIL etc. and help them to manage their finances properly. CIBIL score is very important for anybody now days, but only few people understand. CIBIL score not only affect your ability to get favourable loans & the best interest rates, but it also helps you in getting new approved for a new cell phone plan and help you get lesser insurance premiums.</p> <br>
-                    <p>Customers apply for a loan at certain stages of life. We provide loans for your small needs like a new car, a wedding, education fees, family vacation, credit card or tax payments, etc. Now you do not need to wait for long to address these problems. We inform and discuss about company policies and conditions before catering any financial needs of the people. We are in the service sector and we seek to serve our customers that earned the good will, trust and loyalty of our customers. Our areas of focus include:</p>
                     <div class="inscCC"></div>
                 </div>
             </div>

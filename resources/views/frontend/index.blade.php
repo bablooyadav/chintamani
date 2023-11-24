@@ -282,7 +282,7 @@
         color: #000;
     }
 </style>
-<section id="cta-section bgerasn" style="background-image: url('{{asset('uploads/article')}}/{{$become->image}}');
+<section id="cta-section bgerasn" style="background-image: url('{{asset('uploads/article')}}/{{@$become->image}}');
     background-size: cover;
     height: 462px;">
     <div class="styl__pading">
@@ -291,8 +291,8 @@
                 <div class="av-column-7"> </div>
                 <div class="av-column-5">
                     <div class="JoinDasa">
-                        <h2 class="text-white joiunUs">{{$become->heading}}</h2>
-                        <p class="pBcome">{!!$become->content!!}</p>
+                        <h2 class="text-white joiunUs">{{@$become->heading}}</h2>
+                        <p class="pBcome">{!!@$become->content!!}</p>
                         <a class="btn bgnary aapsCss" href="#!">JOIN AS DSA</a>
                     </div>
                 </div>
@@ -318,14 +318,14 @@
                     <article class="post-items">
                         <figure class="post-image post-image-absolute">
                             <div class="featured-image">
-                                <a href="blogs-details.php" class="post-hover">
+                                <a href="{{route('blogdetails', encrypt($blogsdata->id))}}" class="post-hover">
                                     <img src="{{asset('uploads/article')}}/{{$blogsdata->image}}" alt="blog_item">
                                 </a>
                             </div>
                         </figure>
                         <div class="post-content">
-                            <span class="post-date"> <a href="blogs-details.php"><span>14</span>Dec 2022</a> </span>
-                            <h5 class="post-title"><a href="blogs-details.php" rel="bookmark">{{$blogsdata->title}}</a></h5>
+                            <span class="post-date"> <a href="{{route('blogdetails', encrypt($blogsdata->id))}}"><span>14</span>Dec 2022</a> </span>
+                            <h5 class="post-title"><a href="{{route('blogdetails', encrypt($blogsdata->id))}}" rel="bookmark">{{$blogsdata->title}}</a></h5>
                             <div class="post-footer">
                                 <p>
                                     <?php
@@ -333,7 +333,7 @@
                                     echo implode(' ', array_slice($contentWords, 0, 25));
                                     ?>
                                 </p>
-                                <a href="blogs-details.php" class="more-link">Read More</a>
+                                <a href="{{route('blogdetails', encrypt($blogsdata->id))}}" class="more-link">Read More</a>
                                 <span class="post-count">{{$blogsdata->tags}}</span>
                             </div>
                         </div>

@@ -38,8 +38,10 @@ Route::get('about-us', [App\Http\Controllers\Frontend\CustomerController::class,
 Route::get('why-choose', [App\Http\Controllers\Frontend\CustomerController::class, 'whychooseus'])->name('why-choose');
 Route::get('contact-us', [App\Http\Controllers\Frontend\CustomerController::class, 'contactus'])->name('contact-us');
 Route::get('blog', [App\Http\Controllers\Frontend\CustomerController::class, 'blog'])->name('blog');
+Route::get('blogdetails/{id}', [App\Http\Controllers\Frontend\CustomerController::class, 'blogdetails'])->name('blogdetails');
+Route::get('insurancedetails/{id}', [App\Http\Controllers\Frontend\CustomerController::class, 'insurancedetails'])->name('insurancedetails');
 Route::get('insurance', [App\Http\Controllers\Frontend\CustomerController::class, 'insurance'])->name('insurance');
-Route::get('career', [App\Http\Controllers\Frontend\CustomerController::class, 'career'])->name('career');
+Route::get('careers', [App\Http\Controllers\Frontend\CustomerController::class, 'careers'])->name('careers');
 
 
 Route::group(['prefix' => 'admin'], function () {

@@ -32,6 +32,7 @@
                 </div>
                 <div class="av-columns-area">
                     <span class="tilter d-none"></span>
+                    @foreach($whychooseus as $data)
                     <div class="av-column-4 av-sm-column-6 RveVole tilter">
                         <div class="tilter__figure">
                             <div class="features-item">
@@ -40,7 +41,7 @@
                                         <i class="fa fa-check-circle"></i>
                                     </div>
                                     <div class="features-content">
-                                        <h6 class="features-title"><a href="#!">Personal emergency</a></h6>
+                                        <h6 class="features-title"><a href="#!">{{$data->heading}}</a></h6>
                                     </div>
                                     <div class="modern-icon"><i class="fa fa-delicious"></i></div>
                                 </div>
@@ -48,7 +49,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="av-column-4 av-sm-column-6 RveVole tilter">
+                    @endforeach
+                    <!-- <div class="av-column-4 av-sm-column-6 RveVole tilter">
                         <div class="tilter__figure">
                             <div class="features-item">
                                 <div class="features-inner tilter__caption">
@@ -210,7 +212,7 @@
                                 <div class="tilter__deco--lines"></div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
                 </div>

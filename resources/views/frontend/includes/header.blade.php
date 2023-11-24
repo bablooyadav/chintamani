@@ -17,7 +17,7 @@
                         <li class="av-button-area">
                            <a class="btn claa__btnsTTtsy linkCss" href="{{route('quick-enquiry')}}"> <span>Quick Enquiry</span> </a>
                            <a class="btn claa__btnsTTtsy linkCss" href="{{route('mandate-registration')}}">Mandate Registration</a>
-                           <a class="btn claa__btnsTTtsy linkCss" href="{{route('career')}}">Career</a>
+                           <a class="btn claa__btnsTTtsy linkCss" href="{{route('careers')}}">Career</a>
                            <a class="btn claa__btnsTTtsy linkCss" href="{{route('pay-now')}}">Pay Now</a>
                            <a class="btn claa__btnsTTtsy linkCss" href="tel:+91-9212132955"> <i class="fa fa-phone"></i> Call Us </a>
 

@@ -32,7 +32,7 @@
                                 echo implode(' ', array_slice($contentWords, 0, 25));
                                 ?>
                             </p>
-                            <a href="blogs-details.php" class="more-link">Read More</a>
+                            <a href="{{route('blogdetails', encrypt($blogsdata->id))}}" class="more-link">Read More</a>
                             <span class="post-count">{{$blogsdata->tags}}</span>
                         </div>
                     </div>

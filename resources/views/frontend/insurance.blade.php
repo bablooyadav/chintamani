@@ -12,7 +12,7 @@
                     <div class="av-column-3 av-sm-column-6">
                         <div class="funfact-item insurCss">
                             <img class="insuimgCss" src="{{asset('uploads/article')}}/{{$insurance->image}}">
-                            <h5> <a class="instxtCss" href="life-insurance.php">{{$insurance->title}}</a> </h5>
+                            <h5> <a class="instxtCss" href="{{route('insurancedetails', encrypt($insurance->id))}}">{{$insurance->title}}</a> </h5>
                         </div>
                     </div>
                     @endforeach
