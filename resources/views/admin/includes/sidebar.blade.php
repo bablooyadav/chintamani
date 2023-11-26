@@ -224,7 +224,7 @@
                      <span class="pcoded-mtext">Manual Leads</span>
                   </a>
                </li>
-               
+
                @endcan
                <!-- @can('rejection-read')
                <li>
@@ -259,6 +259,30 @@
             <a href="{{ route('processingloans.loan') }}">
                <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
                <span class="pcoded-mtext">Processing Loans</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ route('approvedloans.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Approved Loans</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ route('rejectedloans.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Rejected Loans</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ route('sanctionedloans.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Sanctioned Loans</span>
+            </a>
+         </li>
+         <li>
+            <a href="{{ route('disbursedloans.loan') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Disbursed Loans</span>
             </a>
          </li>
 

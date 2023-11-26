@@ -36,13 +36,21 @@ class HoldLoansController extends Controller
             $totalFiltered = $totalData;
             $limit = $request->input('length');
             $start = $request->input('start');
-            $order = $columns[$request->input('order.0.column')];
-            $dir = $request->input('order.0.dir');
+            // $order = $columns[$request->input('order.0.column')];
+            // $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
-                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Hold')->offset($start)
+                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Hold');
+                if (!empty($request->start_date) && !empty($request->end_date)) {
+                    $tabData->whereBetween('approved_date', [date('Y-m-d', strtotime($request->start_date)), date('Y-m-d', strtotime($request->end_date))]);
+                } elseif (!empty($request->start_date) && empty($request->end_date)) {
+                    $tabData->whereDate('approved_date', date('Y-m-d', strtotime($request->start_date)));
+                } elseif (empty($request->start_date) && !empty($request->end_date)) {
+                    $tabData->whereDate('approved_date', date('Y-m-d', strtotime($request->end_date)));
+                }
+               $tabData = $tabData->offset($start)
                     ->limit($limit)
-                    ->orderBy($order, $dir)
+                    ->orderBy('s_no', 'DESC')
                     ->get();
             } else {
                 $search = $request->input('search.value');
@@ -51,7 +59,7 @@ class HoldLoansController extends Controller
                 })
                     ->offset($start)
                     ->limit($limit)
-                    ->orderBy($order, $dir)
+                    ->orderBy('s_no', 'DESC')
                     ->get();
                 $totalFiltered = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Hold')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");

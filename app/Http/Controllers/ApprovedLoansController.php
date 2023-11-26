@@ -9,7 +9,7 @@ use App\Models\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
-class ProcessingLoansController extends Controller
+class ApprovedLoansController extends Controller
 {
     // function __construct()
     // {
@@ -25,7 +25,7 @@ class ProcessingLoansController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::where('role', 6)->get();
+        $users = User::where('role',6)->get();
         if ($request->ajax()) {
             $columns = [
                 0 => 's_no',
@@ -40,7 +40,7 @@ class ProcessingLoansController extends Controller
             // $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
-                $tabData = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('apply_loan.application_status', 'Processing');
+                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Approved');
                 if (!empty($request->start_date) && !empty($request->end_date)) {
                     $tabData->whereBetween('approved_date', [date('Y-m-d', strtotime($request->start_date)), date('Y-m-d', strtotime($request->end_date))]);
                 } elseif (!empty($request->start_date) && empty($request->end_date)) {
@@ -48,20 +48,23 @@ class ProcessingLoansController extends Controller
                 } elseif (empty($request->start_date) && !empty($request->end_date)) {
                     $tabData->whereDate('approved_date', date('Y-m-d', strtotime($request->end_date)));
                 }
-                $tabData = $tabData->offset($start)
+                if (!empty($request->executive_id)) {
+                    $tabData->whereDate('updated_by', $request->executive_id);
+                }
+                   $tabData= $tabData->offset($start)
                     ->limit($limit)
                     ->orderBy('s_no', 'DESC')
                     ->get();
             } else {
                 $search = $request->input('search.value');
-                $tabData = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('apply_loan.application_status', 'Processing')->where(function ($query) use ($search) {
+                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Approved')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->offset($start)
                     ->limit($limit)
                     ->orderBy('s_no', 'DESC')
                     ->get();
-                $totalFiltered = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('apply_loan.application_status', 'Processing')->where(function ($query) use ($search) {
+                $totalFiltered = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Approved')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->count();
@@ -77,18 +80,7 @@ class ProcessingLoansController extends Controller
                     $interval = $date1->diff($date2);
 
                     if ($v->is_gurrantor == 1) {
-                        $action = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="' . $v->user_id . '">View G';
-                    }
-                    if ($v->userDetail->verify_applicant == 1) {
-                        $verify_applicant = "<span class='label label-success'>Yes</span>";
-                    } else {
-                        $verify_applicant = "<span class='label label-danger'>No</span>";
-                    }
-
-                    if ($v->userDetail->verify_guarantor == 1) {
-                        $verify_guarantor = "<span class='label label-success'>Yes</span>";
-                    } else {
-                        $verify_guarantor = "<span class='label label-danger'>No</span>";
+                        $action = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="'.$v->user_id.'">View G';
                     }
 
                     $nestedData['id'] = $count + $start + 1;
@@ -98,17 +90,14 @@ class ProcessingLoansController extends Controller
                     $nestedData['name'] = $v->userDetail->first_name . ' ' . $v->userDetail->last_name;
                     $nestedData['phone_no'] = $v->userDetail->phone_no;
                     $nestedData['take_home_salary'] = $v->userDetail->take_home_salary;
-                    $nestedData['address_city'] = $v->userDetail->address_city;
-                    $nestedData['company_name'] = $v->userDetail->company_name;
-                    $nestedData['verify_guarantor'] = $v->userDetail->verify_guarantor;
-                    $nestedData['verify_applicant'] = $verify_applicant;
-                    $nestedData['remarks'] = getRemarks($v->order_id)->remark;
-                    $nestedData['day_month'] = '<label class="label label-danger">' . $interval->format('%d Days %m Months') . '</label>';
-                    $nestedData['applied_date'] = date('d-m-Y', strtotime($v->processing_date));
+                    $nestedData['address_city'] = $v->userDetail->address_city;                    
+                    $nestedData['company_name'] = $v->userDetail->company_name;      
+                    $nestedData['day_month'] = '<label class="label label-danger">'.$interval->format('%d Days %m Months').'</label>';
+                    $nestedData['applied_date'] = date('d-m-Y', strtotime($v->approved_date));
                     $nestedData['assigned_to'] = @$v->users->first_name . ' ' . @$v->users->last_name;
-                    $nestedData['action'] = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="' . $v->user_id . '">View G
-                    <a href="" class="btn btn-dark">Add G</a>' . @$action . '                    
-                    <button class="btn btn-warning btn-sm" onclick="viewSummary(this)" id="' . $v->s_no . '" order_id="' . $v->order_id . '">Summary</button>';
+                    $nestedData['action'] = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="'.$v->user_id.'">View G
+                    <a href="" class="btn btn-dark">Add G</a>
+                    <button class="btn btn-warning btn-sm" onclick="viewSummary(this)" id="'.$v->s_no.'" order_id="'.$v->order_id.'">Summary</button>' . ' ' . @$action;
                     $data[] = $nestedData;
                     $count++;
                 }
@@ -122,7 +111,7 @@ class ProcessingLoansController extends Controller
             echo json_encode($json_data);
             exit;
         }
-        return view('admin.all-loans.processing_loans', compact('users'));
+        return view('admin.all-loans.approved_loans', compact('users'));
     }
 
     /**

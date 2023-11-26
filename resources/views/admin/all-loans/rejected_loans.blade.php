@@ -9,7 +9,7 @@
                         <div class="col-lg-8">
                             <div class="page-header-title">
                                 <div class="d-inline">
-                                    <h4>Processing Loans</h4>
+                                    <h4>Rejected Loans</h4>
                                 </div>
                             </div>
                         </div>
@@ -17,13 +17,13 @@
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item" style="float: left;"> <a href="#!">Home</a> </li>
-                                    <li class="breadcrumb-item" style="float: left;"> <a href="#!">Processing Loans</a> </li>
+                                    <li class="breadcrumb-item" style="float: left;"> <a href="#!">Rejected Loans</a> </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="page-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -32,8 +32,7 @@
                                     <div class="items" data-group="test">
                                         <div class="card">
                                             <div class="card-body">
-                                                <form class="row g-3" method="post" enctype="multipart/form-data" action="">
-                                                    @csrf
+                                                <form class="row g-3">
                                                     <div class="col-md-3">
                                                         <label for="input1" class="form-label">Start Date</label>
                                                         <input type="date" class="form-control shadow" name="start_date" id="start_date">
@@ -52,7 +51,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-3" style="margin-top: 37px;">
-                                                        <button type="submit" class="btn btn-primary aasUsrr">Filter</button>
+                                                        <button type="button" id="filterButton" class="btn btn-primary aasUsrr">Filter</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -71,10 +70,8 @@
                                                                 <th>Phone</th>
                                                                 <th>Salary</th>
                                                                 <th>City</th>
-                                                                <th>Company Name</th>
-                                                                <th>Delay Days</th>
-                                                                <th>Hold Date</th>
-                                                                <th>Hold By/Assigned to</th>
+                                                                <th>Rejected Date</th>
+                                                                <th>Rejected By</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -97,8 +94,16 @@
     </div>
 </div>
 <script>
-    var list = '{{ route("processingloans.loan") }}';
-    var titleName = 'Processing Loans';
+    $(document).ready(function() {
+        table_schedule();
+        $('#filterButton').on('click', function() {
+            table_schedule();
+        });
+
+    });
+
+    var list = '{{ route("rejectedloans.loan") }}';
+    var titleName = 'Rejected Loans';
     $(document).ready(function() {
         table_schedule(list);
     });
@@ -125,6 +130,9 @@
                 data: function(d) {
                     d._token = "{{ csrf_token() }}";
                     d.level = 1;
+                    d.start_date = $('#start_date').val();
+                    d.end_date = $('#end_date').val();
+                    d.executive_id = $('#executive_id').val();
                 },
             },
             "columns": [{
@@ -151,12 +159,6 @@
                 },
                 {
                     "data": "address_city"
-                },
-                {
-                    "data": "company_name"
-                },
-                {
-                    "data": "day_month"
                 },
                 {
                     "data": "applied_date"
