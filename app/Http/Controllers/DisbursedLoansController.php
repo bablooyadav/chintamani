@@ -32,7 +32,7 @@ class DisbursedLoansController extends Controller
                 1 => 'title',
                 2 => 'zone_code',
             ];
-            $totalData = ApplyLoan::count();
+            $totalData = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('application_status', 'Disbursed')->count();
             $totalFiltered = $totalData;
             $limit = $request->input('length');
             $start = $request->input('start');

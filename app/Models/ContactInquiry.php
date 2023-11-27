@@ -12,7 +12,13 @@ class ContactInquiry extends Model
     protected $fillable = [
         'name',
         'email',
-        'phone',
+        'mobile',
         'subject',
+        'area',
+        'content',
+        'tags',
+        'status',
+        'created_at',
+        'updated_at'
     ];
 }

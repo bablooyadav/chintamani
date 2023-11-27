@@ -31,7 +31,7 @@ class AppliedLoansController extends Controller
                 1 => 'title',
                 2 => 'zone_code',
             ];
-            $totalData = ApplyLoan::count();
+            $totalData = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Pending')->count();
             $totalFiltered = $totalData;
             $limit = $request->input('length');
             $start = $request->input('start');
@@ -39,20 +39,20 @@ class AppliedLoansController extends Controller
             $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
-                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Pending')->offset($start)
+                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Pending')->offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
             } else {
                 $search = $request->input('search.value');
-                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Pending')->where(function ($query) use ($search) {
+                $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Pending')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
-                $totalFiltered = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Pending')->where(function ($query) use ($search) {
+                $totalFiltered = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Pending')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->count();

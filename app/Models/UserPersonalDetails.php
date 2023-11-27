@@ -101,4 +101,12 @@ class UserPersonalDetails extends Model
         'date_time',
         'pancard_no',
     ];
+    public function appyloan()
+    {
+        return $this->hasOne(ApplyLoan::class, 'user_id', 's_no');
+    }
+    public function users()
+    {
+        return $this->hasOne(User::class, 'id', 'assigned_to');
+    }
 }

@@ -236,6 +236,24 @@
             </ul>
          </li>
 
+          <li>
+            <a href="{{ route('viewcontact.enquiry') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">View Contact Enquiry</span>
+            </a>
+         </li>
+          <li>
+            <a href="{{ route('allwebenquiry.enquiry') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Web Enquiry</span>
+            </a>
+         </li>
+          <li>
+            <a href="{{ route('lead.management') }}">
+               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
+               <span class="pcoded-mtext">Lead Management</span>
+            </a>
+         </li>
 
          <li>
             <a href="{{ route('verification.loan') }}">

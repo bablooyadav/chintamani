@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ApplyLoan;
 use App\Models\User;
+use App\Models\UserPersonalDetails;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
-class SanctionedLoansController extends Controller
+class AllwebEnquiryController extends Controller
 {
     // function __construct()
     // {
@@ -25,14 +26,14 @@ class SanctionedLoansController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::where('role', 6)->get();
         if ($request->ajax()) {
             $columns = [
                 0 => 's_no',
-                1 => 'title',
-                2 => 'zone_code',
+                1 => 'first_name',
+                2 => 'last_name',
+                3 => 'phone_no',
             ];
-            $totalData = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('application_status', 'Approved')->count();
+            $totalData = UserPersonalDetails::with('appyloan','users')->where('type','web')->count();
             $totalFiltered = $totalData;
             $limit = $request->input('length');
             $start = $request->input('start');
@@ -40,31 +41,28 @@ class SanctionedLoansController extends Controller
             // $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
-                $tabData = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('application_status', 'Approved');
+                $tabData = UserPersonalDetails::with('appyloan','users')->where('type','web');
                 if (!empty($request->start_date) && !empty($request->end_date)) {
-                    $tabData->whereBetween('approved_date', [date('Y-m-d', strtotime($request->start_date)), date('Y-m-d', strtotime($request->end_date))]);
+                    $tabData->whereBetween('updated_at', [date('Y-m-d', strtotime($request->start_date)), date('Y-m-d', strtotime($request->end_date))]);
                 } elseif (!empty($request->start_date) && empty($request->end_date)) {
-                    $tabData->whereDate('approved_date', date('Y-m-d', strtotime($request->start_date)));
+                    $tabData->whereDate('updated_at', date('Y-m-d', strtotime($request->start_date)));
                 } elseif (empty($request->start_date) && !empty($request->end_date)) {
-                    $tabData->whereDate('approved_date', date('Y-m-d', strtotime($request->end_date)));
+                    $tabData->whereDate('updated_at', date('Y-m-d', strtotime($request->end_date)));
                 }
-                if (!empty($request->executive_id)) {
-                    $tabData->whereDate('updated_by', $request->executive_id);
-                }
-                $tabData = $tabData->offset($start)
+               $tabData = $tabData->offset($start)
                     ->limit($limit)
                     ->orderBy('s_no', 'DESC')
                     ->get();
             } else {
                 $search = $request->input('search.value');
-                $tabData = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('application_status', 'Approved')->where(function ($query) use ($search) {
+                $tabData = UserPersonalDetails::with('appyloan','users')->where('type','web')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->offset($start)
                     ->limit($limit)
                     ->orderBy('s_no', 'DESC')
                     ->get();
-                $totalFiltered = ApplyLoan::with('userDetail', 'dsaDetail', 'users')->where('application_status', 'Approved')->where(function ($query) use ($search) {
+                $totalFiltered = UserPersonalDetails::with('appyloan','users')->where('type','web')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
                 })
                     ->count();
@@ -79,22 +77,16 @@ class SanctionedLoansController extends Controller
                     $date2 = new DateTime('NOW');
                     $interval = $date1->diff($date2);
 
-                    if ($v->is_gurrantor == 1) {
-                        $action = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="' . $v->user_id . '">View G';
-                    }
                     $nestedData['id'] = $count + $start + 1;
-                    $nestedData['order_id'] = $v->order_id;
-                    $nestedData['type'] = $v->userDetail->type;
-                    $nestedData['dsa_name'] = empty($v->dsaDetail->dsa_name) || $v->userDetail->type != 'dsa' ? '<label class="label label-danger">None</label>' : $v->dsaDetail->dsa_name;
-                    $nestedData['name'] = $v->userDetail->first_name . ' ' . $v->userDetail->last_name;
-                    $nestedData['phone_no'] = $v->userDetail->phone_no;
-                    $nestedData['take_home_salary'] = $v->userDetail->take_home_salary;
-                    $nestedData['address_city'] = $v->userDetail->address_city;
-                    $nestedData['company_name'] = $v->userDetail->company_name;
+                    $nestedData['name'] = $v->first_name . ' ' . $v->last_name;
+                    $nestedData['phone_no'] = $v->phone_no;
+                    $nestedData['email'] = $v->email;
+                    $nestedData['address_city'] = $v->address_city;                    
+                    $nestedData['day_month'] = '<label class="label label-danger">'.$interval->format('%d Days %m Months').'</label>';
+                    $nestedData['remarks'] = getRemarks($v->s_no)->remark ?? '';
                     $nestedData['assigned_to'] = @$v->users->first_name . ' ' . @$v->users->last_name;
-                    $nestedData['action'] = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="' . $v->user_id . '">View G
-                    <a href="" class="btn btn-dark">Add G</a>'.@$action.'
-                    <button class="btn btn-warning btn-sm" onclick="viewSummary(this)" id="' . $v->s_no . '" order_id="' . $v->order_id . '">Summary</button>';
+                    $nestedData['applied_date'] = date('d-m-Y', strtotime($v->date_created));                    
+                    $nestedData['action'] = '<a href="" class="btn btn-info">View</a>';
                     $data[] = $nestedData;
                     $count++;
                 }
@@ -108,7 +100,7 @@ class SanctionedLoansController extends Controller
             echo json_encode($json_data);
             exit;
         }
-        return view('admin.all-loans.sanctioned_loans', compact('users'));
+        return view('admin.contact-enquiry.all_web_enquiry');
     }
 
     /**

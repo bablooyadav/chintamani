@@ -32,7 +32,7 @@ class HoldLoansController extends Controller
                 1 => 'title',
                 2 => 'zone_code',
             ];
-            $totalData = ApplyLoan::count();
+            $totalData = ApplyLoan::with('userDetail','dsaDetail','users')->where('apply_loan.application_status','Hold')->count();
             $totalFiltered = $totalData;
             $limit = $request->input('length');
             $start = $request->input('start');
