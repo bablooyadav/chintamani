@@ -171,55 +171,29 @@
                                  <a href="javascript:void(0)">Loan Type</a>
                                  <span class="mobile-toggler d-av-none"><button type="button" class="fa fa-chevron-right" aria-label="Mobile Toggler"></button></span>
                                  <ul class="dropdown-menu">
-                                    <li class="menu-item dropdown">
-                                       <a href="javascript:void(0)">Personal Loan</a>
-                                       <span class="mobile-toggler d-av-none"><button type="button" class="fa fa-chevron-right" aria-label="Mobile Toggler"></button></span>
-                                       <ul class="dropdown-menu">
-                                          <li class="menu-item"><a href="personal-loan-for-CA.php">Personal Loan for CA</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-CS.php">Personal Loan for CS</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-doctors.php">Personal Loan for Doctors</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-salaried-employees.php">Personal Loan for Salaried Employees</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-government-employees.php">Personal Loan for Government Employees</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-home-renovation.php">Personal Loan for Home renovation</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-wedding.php">Personal Loan for Wedding</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-travel.php">Personal Loan for Travel</a></li>
-                                          <li class="menu-item"><a href="personal-loan-for-medical-emergency.php">Personal Loan for Medical emergency</a></li>
-                                       </ul>
-                                    </li>
+                                    @php
+                                    $loanCategories = \App\Models\Category::get();
+                                    @endphp
 
+                                    @foreach($loanCategories as $category)
                                     <li class="menu-item dropdown">
-                                       <a href="javascript:void(0)">Business Loan</a>
+                                       <a href="{{ route('loandetail', $category->slug_name) }}">{{ $category->category_name }}</a>
                                        <span class="mobile-toggler d-av-none"><button type="button" class="fa fa-chevron-right" aria-label="Mobile Toggler"></button></span>
+                                       @php
+                                       $categorySubtypes = \App\Models\SubCategory::where('category_id', $category->id)->get();
+                                       @endphp
+                                       @if($categorySubtypes->isNotEmpty())
                                        <ul class="dropdown-menu">
-                                          <li class="menu-item"><a href="business-loan-for-working-capital.php">Business Loan for Working Capital</a></li>
-                                          <li class="menu-item"><a href="business-loan-for-MSME.php">Business Loan for MSME</a></li>
-                                          <li class="menu-item"><a href="business-loan-for-proprietorship.php">Business Loan for Proprietorship</a></li>
-                                          <li class="menu-item"><a href="business-loan-for-women.php">Business Loan for Women</a></li>
-
+                                          @foreach($categorySubtypes as $subtype)
+                                          <li class="menu-item"><a href="{{ route('loans', $subtype->slug_name) }}">{{ $subtype->subcategory_name }}</a></li>
+                                          @endforeach
                                        </ul>
+                                       @endif
                                     </li>
-                                    <li class="menu-item"><a href="gold-loan.php">Gold Loan</a></li>
-                                    <li class="menu-item"><a href="home-loan.php">Home Loan</a></li>
-                                    <li class="menu-item"><a href="house-loan.php">House Loan</a></li>
-                                    <li class="menu-item"><a href="car-loan.php">Car Loan</a></li>
-                                    <li class="menu-item"><a href="loan-against-property.php">Loan Against Property</a></li>
+                                    @endforeach
+                                    <!-- Other menu items -->
                                  </ul>
-
                               </li>
-
-
-                              <!--  <li class="menu-item dropdown">
-                                 <a href="#!">Loan Type</a>
-                                 <span class="mobile-toggler d-av-none"><button type="button" class="fa fa-chevron-right" aria-label="Mobile Toggler"></button></span>
-                                 <ul class="dropdown-menu">
-                                    <li class="menu-item"><a href="#!">Personal Loan</a></li>
-                                    <li class="menu-item"><a href="#!">Business Loan</a></li>
-                                    <li class="menu-item"><a href="#!">Gold Loan</a></li>
-                                    <li class="menu-item"><a href="#!">House Loan</a></li>
-                                    <li class="menu-item"><a href="#!">Car Loan</a></li>
-                                    <li class="menu-item"><a href="#!">Loan Against Property</a></li>
-                                 </ul>
-                              </li> -->
                               <li class="menu-item"><a href="{{route('insurance')}}">Insurance</a></li>
                               <li class="menu-item"><a href="{{route('blog')}}">Blog</a></li>
                               <li class="menu-item"><a href="{{route('contact-us')}}">Contact</a></li>
@@ -228,13 +202,8 @@
                         <div class="menu-right">
                            <ul class="header-wrap-right">
                               <li class="av-button-area">
-                                 <!-- <a href="#" > <img class="apply__css" src="images/logo/Mandate-Registration.png"> </a> -->
                                  <a class="btn claa__inquiwwee aapsCss" href="apply-loan.php">Apply Loan</a>
                               </li>
-
-                              <!-- <li class="av-button-area">
-                                 <a href="#" class="av-btn av-btn-primary av-btn-bubble">Pay Now <span class="bubble_effect"><span class="circle top-left"></span> <span class="circle top-left"></span> <span class="circle top-left"></span> <span class="button effect-button"></span> <span class="circle bottom-right"></span> <span class="circle bottom-right"></span> <span class="circle bottom-right"></span></span></a>
-                                 </li> -->
                            </ul>
                         </div>
                      </div>

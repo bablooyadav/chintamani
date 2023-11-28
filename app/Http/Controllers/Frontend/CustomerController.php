@@ -10,6 +10,9 @@ use App\Models\Career;
 use App\Models\Yourachievements;
 use App\Models\ContactUs;
 use App\Models\Aboutus;
+use App\Models\LoantypeServices;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 use Auth;
 
@@ -31,54 +34,73 @@ class CustomerController extends Controller
         $getfreescore = Yourachievements::where('status', 7)->first();
         $faqdata = Yourachievements::where('status', 8)->get();
         $blogs = Career::where('status', 2)->get();
-        return view('frontend.index', compact('financial', 'complete', 'whychoose', 'support', 'getfreescore','compdata','faqdata','become','blogs'));
+        return view('frontend.index', compact('financial', 'complete', 'whychoose', 'support', 'getfreescore', 'compdata', 'faqdata', 'become', 'blogs'));
     }
 
     public function aboutus()
     {
         $about = Aboutus::first();
-        return view('frontend.about-us',compact('about'));
+        return view('frontend.about-us', compact('about'));
     }
     public function whychooseus()
     {
         $whychooseus = Yourachievements::where('status', 9)->get();
-        return view('frontend.why-choose-us',compact('whychooseus'));
+        return view('frontend.why-choose-us', compact('whychooseus'));
     }
 
     public function contactus()
     {
         $complete = ContactUs::first();
-        return view('frontend.contact-us',compact('complete'));
+        return view('frontend.contact-us', compact('complete'));
     }
 
     public function blog()
     {
         $blogs = Career::where('status', 2)->get();
-        return view('frontend.blog',compact('blogs'));
+        return view('frontend.blog', compact('blogs'));
     }
 
     public function blogdetails($id)
     {
         $ids = decrypt($id);
         $blogdetails = Career::where('id', $ids)->first();
-        return view('frontend.blogdetails',compact('blogdetails'));
+        return view('frontend.blogdetails', compact('blogdetails'));
     }
 
     public function insurancedetails($id)
     {
         $ids = decrypt($id);
         $insurancedetails = Career::where('id', $ids)->first();
-        return view('frontend.insurancedetails',compact('insurancedetails'));
+        return view('frontend.insurancedetails', compact('insurancedetails'));
     }
 
     public function insurance()
     {
         $complete = Career::where('status', 3)->get();
-        return view('frontend.insurance',compact('complete'));
+        return view('frontend.insurance', compact('complete'));
     }
     public function careers()
     {
-        $careers = Career::where('status',1)->get();
-        return view('frontend.careers',compact('careers'));
+        $careers = Career::where('status', 1)->get();
+        return view('frontend.careers', compact('careers'));
+    }
+    public function loans(Request $request, $id)
+    {
+        $subcategory = SubCategory::where('slug_name', $id)->first();
+    
+        if ($subcategory) {
+            $pagedata = LoantypeServices::where('subcategory_id', $subcategory->id)->first();
+            return view('frontend.loans', compact('subcategory', 'pagedata'));
+        } else {
+            // Handle the case where $subcategory is not found
+            return redirect()->route('error-page');
+        }
+    }
+    
+    public function loandetail(Request $request, $id)
+    {
+        $menudata = Category::where('slug_name', $id)->first();
+        $pagedata = LoantypeServices::where('category_id', $menudata->id)->first();
+        return view('frontend.loandetail', compact('menudata', 'pagedata'));
     }
 }
