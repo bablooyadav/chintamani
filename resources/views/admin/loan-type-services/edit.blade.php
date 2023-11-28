@@ -56,16 +56,16 @@
                                                         <select class="form-control shadow" name="category_id" id="cars">
                                                             <option value="">Select Category</option>
                                                             @foreach($categorys as $value)
-                                                            <option value="{{$value->category_name}}">{{$value->category_name}}</option>
+                                                            <option value="{{$value->id}}">{{$value->category_name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label for="input2" class="form-label">Category Name</label>
-                                                        <select class="form-control shadow" name="category_id" id="cars">
+                                                        <select class="form-control shadow" name="subcategory_id" id="cars">
                                                             <option value="">Select Category</option>
                                                             @foreach($subcategorys as $values)
-                                                            <option value="{{$values->subcategory_name}}">{{$values->subcategory_name}}</option>
+                                                            <option value="{{$values->id}}">{{$values->subcategory_name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

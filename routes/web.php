@@ -42,6 +42,8 @@ Route::get('blogdetails/{id}', [App\Http\Controllers\Frontend\CustomerController
 Route::get('insurancedetails/{id}', [App\Http\Controllers\Frontend\CustomerController::class, 'insurancedetails'])->name('insurancedetails');
 Route::get('insurance', [App\Http\Controllers\Frontend\CustomerController::class, 'insurance'])->name('insurance');
 Route::get('careers', [App\Http\Controllers\Frontend\CustomerController::class, 'careers'])->name('careers');
+Route::get('loans/{id}', [App\Http\Controllers\Frontend\CustomerController::class, 'loans'])->name('loans');
+Route::get('loandetail/{id}', [App\Http\Controllers\Frontend\CustomerController::class, 'loandetail'])->name('loandetail');
 
 
 Route::group(['prefix' => 'admin'], function () {
