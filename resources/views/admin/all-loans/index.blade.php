@@ -266,6 +266,45 @@
         });
 
     }
+
+
+    $(document).on('click', '.deletedata', function() {       
+        var id = $(this).attr('data-value');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "{{ route('verificationloan.delete') }}",
+                    method: "POST",
+                    dataType: 'json',
+                    data: {
+                        'id': id,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function() {
+                        $('.loader-bg').show();
+                    },
+                    complete: function() {
+                        $('.loader-bg').hide();
+                    },
+                    success: function(result) {
+                        table_schedule();
+                        Swal.fire('Deleted!', 'Record Deleted Successfully..', 'success');
+                    }
+                });
+            }
+        });
+    });
 </script>
 <script>
     ClassicEditor

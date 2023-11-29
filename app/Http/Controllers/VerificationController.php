@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ApplyLoan;
 use DateTime;
+use Alert;
 use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
@@ -35,13 +36,13 @@ class VerificationController extends Controller
             $totalFiltered = $totalData;
             $limit = $request->input('length');
             $start = $request->input('start');
-            $order = $columns[$request->input('order.0.column')];
-            $dir = $request->input('order.0.dir');
+            // $order = $columns[$request->input('order.0.column')];
+            // $dir = $request->input('order.0.dir');
             // DB::enableQueryLog();
             if (empty($request->input('search.value'))) {
                 $tabData = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Verify')->offset($start)
                     ->limit($limit)
-                    ->orderBy($order, $dir)
+                    ->orderBy('s_no', 'DESC')
                     ->get();
             } else {
                 $search = $request->input('search.value');
@@ -50,7 +51,7 @@ class VerificationController extends Controller
                 })
                     ->offset($start)
                     ->limit($limit)
-                    ->orderBy($order, $dir)
+                    ->orderBy('s_no', 'DESC')
                     ->get();
                 $totalFiltered = ApplyLoan::with('userDetail','dsaDetail','users')->where('application_status','Verify')->where(function ($query) use ($search) {
                     $query->where('loan_amount', 'LIKE', "%{$search}%");
@@ -82,7 +83,7 @@ class VerificationController extends Controller
                         $action1 = '<a class="btn btn-info" onclick="guarantorListModal(this)" customer_id="'.$v->user_id.'">View G';
                     }
                     if (Auth::user()->role == 1) {
-                        $action2 = '<a class="btn btn-danger" onclick="deleteThisLoan(this)" order_id="'.$v->order_id.'">Delete</a>';
+                        $action2 = '<a href="JavaScript:void(0);" class="btn btn-danger deletedata" data-value="'.$v->s_no.'">Delete</a>';
                     }
 
                     $nestedData['id'] = $count + $start + 1;
@@ -190,10 +191,15 @@ class VerificationController extends Controller
      * @param  \App\Models\MakeModel  $makeModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $Slidar = ApplyLoan::find($id)->delete();
-
-        return redirect()->back()->with('success', 'Slidar Deleted Successfully');
+        try {
+            $id = $request->id;
+            ApplyLoan::where('s_no',$id)->delete();
+            return json_encode(['message' => 'done']);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            abort('404');
+        }
     }
 }

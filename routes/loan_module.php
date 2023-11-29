@@ -15,6 +15,8 @@ use App\Http\Controllers\LeadManagementController;
 
 
 Route::get('/verification', [VerificationController::class, 'index'])->name('verification.loan');
+Route::post('verification-delete', [VerificationController::class, 'destroy'])->name('verificationloan.delete');
+
 Route::get('/appliedloans', [AppliedLoansController::class, 'index'])->name('appliedloans.loan');
 Route::get('/holdloans', [HoldLoansController::class, 'index'])->name('holdloans.loan');
 Route::get('/processingloans', [ProcessingLoansController::class, 'index'])->name('processingloans.loan');

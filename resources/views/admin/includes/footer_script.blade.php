@@ -46,6 +46,7 @@
 <script type="text/javascript" src="{{asset('assets/files/assets/pages/dashboard/crm-dashboard.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/files/assets/js/script.js')}}"></script>
 <script src="https://use.fontawesome.com/7223a10777.js"></script>
+<script src="{{ asset('assets/js/sweetalert.js') }}"></script>
 
 <script>
   $(document).ready(function() {
