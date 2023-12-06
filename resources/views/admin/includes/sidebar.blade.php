@@ -209,6 +209,8 @@ $currentParam = \Route::current()->url;
                @endcan
             </ul>
          </li>
+      </ul>
+      <ul class="pcoded-item pcoded-left-item">
          <li class="pcoded-hasmenu">
             <a href="javascript:void(0)">
                <span class="pcoded-micon"><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
@@ -216,16 +218,21 @@ $currentParam = \Route::current()->url;
             </a>
             <ul class="pcoded-submenu">
                @can('enquiry-read')
-               <li>
-                  <a href="{{route('enquiry')}}">
-                     <span class="pcoded-mtext">Enquiries</span>
+               <li class=" {{($currentUrl == 'viewcontact.enquiry') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('viewcontact.enquiry') }}">
+                     <span class="pcoded-mtext">Contact Enquiries</span>
+                  </a>
+               </li>
+               <li class=" {{($currentUrl == 'allwebenquiry.enquiry') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('allwebenquiry.enquiry') }}">
+                     <span class="pcoded-mtext">Web Enquiry</span>
                   </a>
                </li>
                @endcan
                @can('ManualLeads-read')
-               <li>
-                  <a href="{{route('manual-leads')}}">
-                     <span class="pcoded-mtext">Manual Leads</span>
+               <li class=" {{($currentUrl == 'lead.management') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('lead.management') }}">
+                     <span class="pcoded-mtext">Lead Management</span>
                   </a>
                </li>
 
@@ -240,74 +247,199 @@ $currentParam = \Route::current()->url;
             </ul>
          </li>
 
-         <li class=" {{($currentUrl == 'viewcontact.enquiry') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('viewcontact.enquiry') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">View Contact Enquiry {{$currentParam}}</span>
+         <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)">
+               <span class="pcoded-micon"><i class="fa fa-inr" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">Loan Journey</span>
+            </a>
+            <ul class="pcoded-submenu">
+               <li class="{{($currentUrl == 'verification.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('verification.loan') }}">
+                     <span class="pcoded-mtext">Verification</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'appliedloans.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('appliedloans.loan') }}">
+                     <span class="pcoded-mtext">Applied</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'processingloans.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('processingloans.loan') }}">
+                     <span class="pcoded-mtext">Processing</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'approvedloans.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('approvedloans.loan') }}">
+                     <span class="pcoded-mtext">Approved</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'sanctionedloans.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('sanctionedloans.loan') }}">
+                     <span class="pcoded-mtext">Senstion</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'disbursedloans.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('disbursedloans.loan') }}">
+                     <span class="pcoded-mtext">Disbursed</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'holdloans.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('holdloans.loan') }}">
+                     <span class="pcoded-mtext">Hold</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'rejectedloans.loan') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{ route('rejectedloans.loan') }}">
+                     <span class="pcoded-mtext">Reject</span>
+                  </a>
+               </li>
+               <!-- <li class=" ">
+                  <a href="#!">
+                     <span class="pcoded-mtext">Verification Offline Data</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="refer-to-credit.php">
+                     <span class="pcoded-mtext">Refer to Credit</span>
+                  </a>
+               </li> -->
+
+
+            </ul>
+         </li>
+
+         <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)">
+               <span class="pcoded-micon"><i class="fa fa-bullseye" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">E-Mandate</span>
+            </a>
+            <ul class="pcoded-submenu">
+               <li class="{{($currentUrl == 'emandate.egistration') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{route('emandate.egistration')}}">
+                     <span class="pcoded-mtext">E-Mandate Registration</span>
+                  </a>
+               </li>
+               <li class="{{($currentUrl == 'emandate.failed') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{route('emandate.failed')}}">
+                     <span class="pcoded-mtext">E-Mandate Failed</span>
+                  </a>
+               </li>
+               <li class="{{($currentUrl == 'emandate.deactivate') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{route('emandate.deactivate')}}">
+                     <span class="pcoded-mtext">E-Mandate Deactivate</span>
+                  </a>
+               </li>
+            </ul>
+         </li>
+
+         <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)">
+               <span class="pcoded-micon"><i class="fa fa-users" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">Collection</span>
+            </a>
+            <ul class="pcoded-submenu">
+               <li class="pcoded-hasmenu">
+                  <a href="javascript:void(0)">
+                     <span class="pcoded-mtext">Today PTP</span>
+                  </a>
+                  <ul class="pcoded-submenu">
+                     <li class="{{($currentUrl == 'ptp') ? 'active pcoded-trigger' : '' }}">
+                        <a href="{{route('ptp')}}">
+                           <span class="pcoded-mtext">PTP </span>
+                        </a>
+                     </li>
+                     <li class="{{($currentUrl == 'ptp.reports') ? 'active pcoded-trigger' : '' }}">
+                        <a href="{{route('ptp.reports')}}">
+                           <span class="pcoded-mtext">PTP reports </span>
+                        </a>
+                     </li>
+                     <li class="{{($currentUrl == 'ptp.npa') ? 'active pcoded-trigger' : '' }}">
+                        <a href="{{route('ptp.npa')}}">
+                           <span class="pcoded-mtext">PTP NPA</span>
+                        </a>
+                     </li>
+                     <li class="{{($currentUrl == 'ptp.assignToExecutive') ? 'active pcoded-trigger' : '' }}">
+                        <a href="{{route('ptp.assignToExecutive')}}">
+                           <span class="pcoded-mtext">PTP Assign to Executive</span>
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+
+               <li class="{{($currentUrl == 'due.list') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{route('due.list')}}">
+                     <span class="pcoded-mtext">Due List</span>
+                  </a>
+               </li>
+
+               <li class="{{($currentUrl == 'reports') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{route('reports')}}">
+                     <span class="pcoded-mtext">Reports</span>
+                  </a>
+               </li>
+               <li class="{{($currentUrl == 'view.visit') ? 'active pcoded-trigger' : '' }}">
+                  <a href="{{route('view.visit')}}">
+                     <span class="pcoded-mtext">View Visit</span>
+                  </a>
+               </li>
+            </ul>
+         </li>
+
+         <li class="{{($currentUrl == 'dsa') ? 'active pcoded-trigger' : '' }}">
+            <a href="{{route('dsa')}}">
+               <span class="pcoded-micon"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">DSA</span>
             </a>
          </li>
-         <li class=" {{($currentUrl == 'allwebenquiry.enquiry') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('allwebenquiry.enquiry') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Web Enquiry</span>
+         <li class="{{($currentUrl == 'promotional.notification') ? 'active pcoded-trigger' : '' }}">
+            <a href="{{route('promotional.notification')}}">
+               <span class="pcoded-micon"><i class="fa fa-bell-slash-o" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">Promotional & Notification</span>
             </a>
          </li>
-         <li class=" {{($currentUrl == 'lead.management') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('lead.management') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Lead Management</span>
+      </ul>
+
+      <ul class="pcoded-item pcoded-left-item">
+         <li class="pcoded-hasmenu">
+            <a href="javascript:void(0)">
+               <span class="pcoded-micon"><i class="fa fa-pie-chart" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">Statistics</span>
+            </a>
+            <ul class="pcoded-submenu">
+               <li class=" ">
+                  <a href="#!">
+                     <span class="pcoded-mtext">Loan Statistics</span>
+                  </a>
+               </li>
+               <li class=" ">
+                  <a href="#!">
+                     <span class="pcoded-mtext">DSA Statistics</span>
+                  </a>
+               </li>
+               <li class=" ">
+                  <a href="#!">
+                     <span class="pcoded-mtext">Users Statistics</span>
+                  </a>
+               </li>
+
+            </ul>
+         </li>
+
+         <li class="{{($currentUrl == 'search') ? 'active pcoded-trigger' : '' }}">
+            <a href="{{route('search')}}">
+               <span class="pcoded-micon"><i class="fa fa-search" aria-hidden="true"></i></span>
+               <span class="pcoded-mtext">Search</span>
             </a>
          </li>
 
-         <li class=" {{($currentUrl == 'verification.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('verification.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Verification</span>
-            </a>
-         </li>
-         <li class=" {{($currentUrl == 'appliedloans.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('appliedloans.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Applied Loans</span>
-            </a>
-         </li>
-         <li class=" {{($currentUrl == 'holdloans.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('holdloans.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Hold Loans</span>
-            </a>
-         </li>
-         <li class=" {{($currentUrl == 'processingloans.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('processingloans.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Processing Loans</span>
-            </a>
-         </li>
-         <li class=" {{($currentUrl == 'approvedloans.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('approvedloans.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Approved Loans</span>
-            </a>
-         </li>
-         <li class=" {{($currentUrl == 'rejectedloans.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('rejectedloans.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Rejected Loans</span>
-            </a>
-         </li>
-         <li class=" {{($currentUrl == 'sanctionedloans.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('sanctionedloans.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Sanctioned Loans</span>
-            </a>
-         </li>
-         <li class=" {{($currentUrl == 'disbursedloans.loan') ? 'active pcoded-trigger' : '' }}">
-            <a href="{{ route('disbursedloans.loan') }}">
-               <span class="pcoded-micon"><i class="fa fa-tasks"></i></span>
-               <span class="pcoded-mtext">Disbursed Loans</span>
-            </a>
-         </li>
-
+      </ul>
 
       </ul>
    </div>

@@ -57,6 +57,11 @@ return [
             'driver' => 'session',
             'provider' => 'agent',
         ],
+        'dsa' => [
+            // 'redirectTo' => 'dsa.login',
+            'driver' => 'session',
+            'provider' => 'dsa',
+           ],
     ],
 
     /*
@@ -81,6 +86,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'dsa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UserLogin::class,
+           ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -117,6 +126,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'users' => [
+            'provider' => 'dsa',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
